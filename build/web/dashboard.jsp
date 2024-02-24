@@ -5,27 +5,10 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
         <title>Lugx Gaming Shop HTML5 Template</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-        <!-- Additional CSS Files -->
-        <link rel="stylesheet" href="assets/css/fontawesome.css">
-        <link rel="stylesheet" href="assets/css/templatemo-lugx-gaming.css">
-        <link rel="stylesheet" href="assets/css/owl.css">
-        <link rel="stylesheet" href="assets/css/animate.css">
-        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-        <!--
-        
-        TemplateMo 589 lugx gaming
-        
-        https://templatemo.com/tm-589-lugx-gaming
-        
-        -->
+        <%@include file="shared/stylesheet.jsp" %>
     </head>
 
     <body>
@@ -362,22 +345,9 @@
             </div>
         </div>
 
-        <footer>
-            <div class="container">
-                <div class="col-lg-12">
-                    <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design: TemplateMo</a></p>
-                </div>
-            </div>
-        </footer>
+        <%@include file="shared/footer.jsp" %>
 
-        <!-- Scripts -->
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/isotope.min.js"></script>
-        <script src="assets/js/owl-carousel.js"></script>
-        <script src="assets/js/counter.js"></script>
-        <script src="assets/js/custom.js"></script>
+        <%@include file="shared/script_import.jsp" %>
 
     </body>
 </html>
