@@ -4,6 +4,9 @@
  */
 package Controller;
 
+import database.*;
+import model.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,8 +19,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author quang
  */
-@WebServlet(name = "ShopController", urlPatterns = {"/shop"})
-public class ShopController extends HttpServlet {
+@WebServlet(name = "TestController", urlPatterns = {"/test"})
+public class TestController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,8 +33,19 @@ public class ShopController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
 
+        PrintWriter out = response.getWriter();
+
+        //BELOW IS TEST_CODE
+        CategoryDAO cDAO = new CategoryDAO();
+        GameDAO gDAO = new GameDAO();
+        Game game2 = gDAO.getAll().get(2);
+        Category category1 = cDAO.getById(4);
+
+//        out.println(gDAO.getById(2));
+        out.println(category1.getGames());
+
+        //out.print(gDAO.getAll().toString().replaceAll("},", "},"+"\n"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

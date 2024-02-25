@@ -2,7 +2,7 @@
 <%
     //Determite the what page is displaying
     String routeString = request.getRequestURI();
-    System.out.println(routeString);
+    //System.out.println(routeString);
     
     int pageId = -1;
     if (routeString.endsWith("dashboard.jsp")){
