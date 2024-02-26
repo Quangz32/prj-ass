@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author quang
  */
-@WebServlet(name = "TestController", urlPatterns = {"/test"})
+@WebServlet(name = "TestController", urlPatterns = {"/test/*"})
 public class TestController extends HttpServlet {
 
     /**
@@ -33,6 +33,11 @@ public class TestController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String pathInfo = request.getPathInfo(); // Lấy đường dẫn sau "/route1/"
+        // Xử lý logic tại đây với pathInfo
+        response.getWriter().println("Your link: " + pathInfo);
+        
 
         PrintWriter out = response.getWriter();
 
@@ -40,7 +45,7 @@ public class TestController extends HttpServlet {
         CategoryDAO cDAO = new CategoryDAO();
         GameDAO gDAO = new GameDAO();
         Game game2 = gDAO.getAll().get(2);
-        Category category1 = cDAO.getById(4);
+        Category category1 = cDAO.getById(3);
 
 //        out.println(gDAO.getById(2));
         out.println(category1.getGames());

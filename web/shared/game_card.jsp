@@ -1,11 +1,14 @@
 <%
-    System.out.println(game);
+    //System.out.println(game);
 %>
 
-<div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6">
+<div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items">
     <div class="item">
         <div class="thumb">
-            <a href="product-details.html"><img src="<%= game.getImageURL()%>" alt=""></a>
+            <span style="display: none"> <%= game.getId() %></span>
+            <a href="product-details.html">
+                <img src="<%= game.getImagePath() %>" alt="" style="height: 226px ">
+            </a>
             <span class="price"><em>$<%= game.getListedPrice()%></em>$<%= game.getDiscountPrice()%></span>
         </div>
         <div class="down-content">

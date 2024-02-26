@@ -9,7 +9,7 @@ public class Game {
     String name;
     int listedPrice;
     int discountPrice;
-    String imageURL;
+    String imageURL;    //should be imageFileName **
 
     public Game(int id, String name, int listedPrice, int discountPrice, String imageURL) {
         this.id = id;
@@ -29,6 +29,10 @@ public class Game {
 
     public String getImageURL() {
         return imageURL;
+    }
+
+    public String getImagePath() {
+        return "/Ass1/assets/images/" + imageURL;
     }
 
     public void setImageURL(String imageURL) {

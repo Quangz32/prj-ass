@@ -59,11 +59,10 @@ public class CategoryDAO extends MyDAO {
     }
 
     public void insert(Category category) {
-        xSql = "insert into Categories values (?,?)";
+        xSql = "insert into Categories values (?)";
         try {
             ps = con.prepareStatement(xSql);
-            ps.setInt(1, category.getId());
-            ps.setString(2, category.getName());
+            ps.setString(1, category.getName());
 
             ps.executeUpdate();
             ps.close();

@@ -35,7 +35,7 @@ public class GameDAO extends MyDAO {
         }
         return (gameList);
     }
-    
+
     public Game getById(int searchId) {
 
         int idz;
@@ -57,7 +57,7 @@ public class GameDAO extends MyDAO {
                 discountPricez = rs.getInt("discountPrice");
                 imageURLz = rs.getString("imageURL");
                 Game game_i = new Game(idz, namez, listedPricez, discountPricez, imageURLz);
-                
+
                 return game_i;  //return 
             }
             rs.close();
@@ -65,19 +65,18 @@ public class GameDAO extends MyDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return null;    //return nothing
     }
 
     public void insert(Game gameToInsert) {
-        xSql = "insert into Games values (?,?,?,?,?)";
+        xSql = "insert into Games values (?,?,?,?)";
         try {
             ps = con.prepareStatement(xSql);
-            ps.setInt(1, gameToInsert.getId());
-            ps.setString(2, gameToInsert.getName());
-            ps.setInt(3, gameToInsert.getListedPrice());
-            ps.setInt(4, gameToInsert.getDiscountPrice());
-            ps.setString(5, gameToInsert.getImageURL());
+            ps.setString(1, gameToInsert.getName());
+            ps.setInt(2, gameToInsert.getListedPrice());
+            ps.setInt(3, gameToInsert.getDiscountPrice());
+            ps.setString(4, gameToInsert.getImageURL());
 
             ps.executeUpdate();
             ps.close();
