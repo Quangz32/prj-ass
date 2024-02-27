@@ -1,11 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller;
 
 import database.*;
 import model.*;
+import Lib.MyLib;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author quang
- */
+// You shouldnot care about this class, it just be use to test functions
 @WebServlet(name = "TestController", urlPatterns = {"/test"})
 public class TestController extends HttpServlet {
 
@@ -33,14 +30,26 @@ public class TestController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDAO cDAO = new CategoryDAO();
-        Category cate = cDAO.getById(3);
-        
-        response.getWriter().println(cate.getGames());
-        
-        
+        PrintWriter out = response.getWriter();
+
+        CategoryDAO categoryDAO = new CategoryDAO();
+        GameDAO gameDAO = new GameDAO();
+
+//        Category cate = categoryDAO.getById(3);
+//        
+//        response.getWriter().println(cate.getGames());
+//        
+//        out.println(gameDAO.getById(4).getDetail().getIntroduction());
+
+        String input = MyLib.hashString("1111");
+
+        // Lấy nửa đầu của chuỗi
+        String firstHalf = input.substring(0, input.length() / 2);
+        out.println(firstHalf);
+
         //out.print(gDAO.getAll().toString().replaceAll("},", "},"+"\n"));
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -89,5 +89,10 @@ public class Game {
         GameDetailDAO gdDAO = new GameDetailDAO();
         gdDAO.insert(game_detail);
     }
+    
+    public GameDetail getDetail(){
+        GameDetailDAO gdDAO = new GameDetailDAO();
+        return gdDAO.getByGameId(this.id);
+    }
 
 }

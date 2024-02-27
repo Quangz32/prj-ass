@@ -31,21 +31,17 @@ public class GameDetailDAO extends MyDAO {
         return (game_details);
     }
 
-    public GameDetail getByGameId(int searchId) {
-
-        int idz;
-        String introz;
-        String descriptz;
-
+    public GameDetail getByGameId(int gameId) {
+        
         xSql = "select * from GameDetails where gameId = ?";
         try {
             ps = con.prepareStatement(xSql);
-            ps.setInt(1, searchId);
+            ps.setInt(1, gameId);
             rs = ps.executeQuery();
             while (rs.next()) {
-                idz = rs.getInt("id");
-                introz = rs.getString("introduction");
-                descriptz = rs.getString("description");
+                int idz = rs.getInt("gameId");
+                String introz = rs.getString("introduction");
+                String descriptz = rs.getString("description");
                 
                 GameDetail game_detail = new GameDetail(idz, introz, descriptz);
 

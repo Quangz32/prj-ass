@@ -31,9 +31,9 @@
                     <ul class="nav">
                         <li><a href="/Ass1/dashboard"   class="<%= pageId==0 ? "active" : "" %>">Home</a></li>
                         <li><a href="/Ass1/shop"        class="<%= pageId==1 ? "active" : "" %>">Our Shop</a></li>
-                        <li><a href="/Ass1/product"     class="<%= pageId==2 ? "active" : "" %>">Product Details</a></li>
+                        <li style="display: none"><a href="/Ass1/product"     class="<%= pageId==2 ? "active" : "" %>">Product Details</a></li>
                         <li><a href="/Ass1/contact"     class="<%= pageId==3 ? "active" : "" %>">Contact Us</a></li>
-                        <li><a href="#">Sign In</a></li>
+                        <li><a href="/Ass1/login.jsp">Sign In</a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
