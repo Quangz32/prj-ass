@@ -69,6 +69,11 @@ public class Game {
     }
 
     ////////////
+    public void insertToDatabase(){
+        GameDAO gDAO = new GameDAO();
+        gDAO.insert(this);
+    }
+    
     public ArrayList<Category> getCategories() {
 
         CategoryDAO cDAO = new CategoryDAO();
@@ -93,6 +98,23 @@ public class Game {
         }
 
         return (categories);
+    }
+    
+    public void addCategory(int category_id){
+        
+        MyDAO mydao = new MyDAO();
+        mydao.xSql = "insert into Game_Category values (?,?)";
+
+        try {
+            mydao.ps = mydao.con.prepareStatement(mydao.xSql);
+            mydao.ps.setInt(1, this.id);
+            mydao.ps.setInt(2, category_id);
+
+            mydao.ps.executeUpdate();
+            mydao.ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

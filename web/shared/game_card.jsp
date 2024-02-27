@@ -1,13 +1,19 @@
 <%
-    //System.out.println(game);
+    //Get categories of a game: String("A B C")
+    String categories_string = "";
+    ArrayList<Category> categories_of_game = game.getCategories();
+    
+    for (Category category : categories_of_game){
+        categories_string += category.getName() + " ";
+    }
 %>
 
-<div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items">
+<div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items <%=categories_string%>">
     <div class="item">
         <div class="thumb">
             <span style="display: none"> <%= game.getId() %></span>
             <a href="product-details.html">
-                <img src="<%= game.getImagePath() %>" alt="" style="height: 226px ">
+                <img src="<%= game.getImagePath() %>" alt="" style="height: 200px ">
             </a>
             <span class="price"><em>$<%= game.getListedPrice()%></em>$<%= game.getDiscountPrice()%></span>
         </div>

@@ -4,8 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/form_upload_game.jsp</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/database/GameDAO.java</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/TestController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/model/Game.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shared/game_card.jsp</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/Game/InsertController.java</file>
         </group>
     </open-files>

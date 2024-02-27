@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>Lugx Gaming - Shop Page</title>
-        
+
         <%@include file="shared/stylesheet.jsp" %>
     </head>
 
@@ -38,15 +38,20 @@
                     <li>
                         <a class="is_active" href="#!" data-filter="*">Show All</a>
                     </li>
-                    <li>
-                        <a href="#!" data-filter=".adv">Adventure</a>
-                    </li>
-                    <li>
-                        <a href="#!" data-filter=".str">Strategy</a>
-                    </li>
-                    <li>
-                        <a href="#!" data-filter=".rac">Racing</a>
-                    </li>
+
+                    
+                    <%
+                        //Create sorting
+                        CategoryDAO cateDAO = new CategoryDAO();
+                        ArrayList<Category> categories = cateDAO.getAll();
+                        
+                    for (Category category : categories){
+                    %>
+                        <li>
+                            <a href="#!" data-filter=".<%= category.getName() %>"><%= category.getName() %></a>
+                        </li>
+
+                    <% } %>
                 </ul>
                 <div class="row trending-box">
                     <%
@@ -57,9 +62,9 @@
                         
                         for (Game game : gameList){
                     %>   
-                    
+
                     <%@include file="shared/game_card.jsp" %>
-                    
+
                     <%
                         }
                     %>

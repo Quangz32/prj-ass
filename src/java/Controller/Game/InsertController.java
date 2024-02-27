@@ -1,4 +1,3 @@
-
 package Controller.Game;
 
 import database.GameDAO;
@@ -12,7 +11,6 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import jakarta.servlet.annotation.MultipartConfig;
 import model.Game;
-
 
 @WebServlet("/admin/game/insert")
 @MultipartConfig(
@@ -32,23 +30,37 @@ public class InsertController extends HttpServlet {
 //        } else {
 //            response.getWriter().println("Failed to upload image.");
 //        }
-        
+
         //Build Game object -> save to database
         String gameName = request.getParameter("gameName");
         String listedPriceString = request.getParameter("listedPrice");
         String discountPriceString = request.getParameter("discountPrice");
-            
-            //Maybe add some validation in the furture
+
+        //Maybe add some validation in the furture
         int listedPrice = Integer.parseInt(listedPriceString);
         int discountPrice = Integer.parseInt(discountPriceString);
 
         Game gameToInsert = new Game(-1, gameName, listedPrice, discountPrice, fileName);
-        
-        GameDAO gamedao = new GameDAO();
-        
-        gamedao.insert(gameToInsert);
+        gameToInsert.insertToDatabase();
+
+        //Add categories inputted
+        AddCategories(request);
 
         request.getRequestDispatcher("/shop").forward(request, response);
+    }
+
+    private void AddCategories(HttpServletRequest request) throws IOException, ServletException {
+        GameDAO gDAO = new GameDAO();
+        Game newest_game = gDAO.getLast();
+
+        String[] categories = request.getParameterValues("categories");
+        if (categories != null) {
+            for (int i = 0; i < categories.length; i++) {
+                int category_id = Integer.parseInt(categories[i]);
+                newest_game.addCategory(category_id);
+            }
+        }
+
     }
 
     private String saveUploadedFile(HttpServletRequest request) throws IOException, ServletException {
