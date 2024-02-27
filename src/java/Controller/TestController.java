@@ -33,10 +33,11 @@ public class TestController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GameDAO gDAO = new GameDAO();
-        Game game = gDAO.getById(2);
+        CategoryDAO cDAO = new CategoryDAO();
+        Category cate = cDAO.getById(3);
         
-        game.addCategory(2);
+        response.getWriter().println(cate.getGames());
+        
         
         //out.print(gDAO.getAll().toString().replaceAll("},", "},"+"\n"));
     }

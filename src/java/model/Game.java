@@ -69,52 +69,25 @@ public class Game {
     }
 
     ////////////
-    public void insertToDatabase(){
+    public void insertToDatabase() {
         GameDAO gDAO = new GameDAO();
         gDAO.insert(this);
     }
-    
+
     public ArrayList<Category> getCategories() {
+        Game_CategoryDAO gcDAO = new Game_CategoryDAO();
+        return gcDAO.getCategoriesByGame(this);
+    }
 
-        CategoryDAO cDAO = new CategoryDAO();
-
-        ArrayList<Category> categories = new ArrayList<>();
-
-        MyDAO mydao = new MyDAO();
-        mydao.xSql = "select * from Game_Category where gameId = ?";
-
-        try {
-            mydao.ps = mydao.con.prepareStatement(mydao.xSql);
-            mydao.ps.setInt(1, this.id);
-            mydao.rs = mydao.ps.executeQuery();
-            while (mydao.rs.next()) {
-                int categoryId = mydao.rs.getInt("categoryId");
-                categories.add(cDAO.getById(categoryId));
-            }
-            mydao.rs.close();
-            mydao.ps.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return (categories);
+    public void addCategory(int category_id) {
+        Game_CategoryDAO gcDAO = new Game_CategoryDAO();
+        gcDAO.addGameCategory(this.id, category_id);
     }
     
-    public void addCategory(int category_id){
-        
-        MyDAO mydao = new MyDAO();
-        mydao.xSql = "insert into Game_Category values (?,?)";
-
-        try {
-            mydao.ps = mydao.con.prepareStatement(mydao.xSql);
-            mydao.ps.setInt(1, this.id);
-            mydao.ps.setInt(2, category_id);
-
-            mydao.ps.executeUpdate();
-            mydao.ps.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void addDetail(String introduction, String description){
+        GameDetail game_detail = new GameDetail(this.id, introduction, description);
+        GameDetailDAO gdDAO = new GameDetailDAO();
+        gdDAO.insert(game_detail);
     }
 
 }

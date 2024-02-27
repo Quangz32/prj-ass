@@ -25,11 +25,6 @@ public class InsertController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Store image
         String fileName = saveUploadedFile(request);
-//        if (!fileName.isEmpty()) {
-//            response.getWriter().println("Image uploaded successfully. File name: " + fileName);
-//        } else {
-//            response.getWriter().println("Failed to upload image.");
-//        }
 
         //Build Game object -> save to database
         String gameName = request.getParameter("gameName");
@@ -45,8 +40,21 @@ public class InsertController extends HttpServlet {
 
         //Add categories inputted
         AddCategories(request);
+        
+        //Add GameDetail
+        AddGameDetail(request);
 
         request.getRequestDispatcher("/shop").forward(request, response);
+    }
+    
+    private void AddGameDetail(HttpServletRequest request) throws IOException, ServletException {
+        String introz = request.getParameter("introduction");
+        String descriptz = request.getParameter("description");
+        
+        GameDAO gDAO = new GameDAO();
+        Game newest_game = gDAO.getLast();
+        
+        newest_game.addDetail(introz, descriptz);
     }
 
     private void AddCategories(HttpServletRequest request) throws IOException, ServletException {
@@ -60,7 +68,6 @@ public class InsertController extends HttpServlet {
                 newest_game.addCategory(category_id);
             }
         }
-
     }
 
     private String saveUploadedFile(HttpServletRequest request) throws IOException, ServletException {

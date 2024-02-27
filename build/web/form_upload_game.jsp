@@ -34,6 +34,12 @@
             <label for="<%= category.getName() %>"><%= category.getName() %></label><br>
             <% } %>
 
+            <label for="introduction">Introduction:</label><br>
+            <textarea id="introduction" name="introduction" rows="4" cols="50"></textarea><br><br>
+
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="8" cols="50"></textarea><br><br>
+
             <input type="submit" value="Submit">
         </form>
     </body>

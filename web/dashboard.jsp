@@ -23,7 +23,7 @@
                     <div class="col-lg-6 align-self-center">
                         <div class="caption header-text">
                             <h6>Welcome to Quangz.fun</h6>
-                            <h2>BEST GAMING SITE EVER!</h2>
+                            <h2 style="font-size: 40px">BEST GAMING SITE EVER!</h2>
                             <p>Discover gaming excellence at Quangz.fun! With a vast collection of exciting titles, from the latest releases to beloved classics, we're the ultimate destination for gamers. Join us now and embark on an unforgettable gaming journey!</p>
                             <div class="search-input">
                                 <form id="search" action="#">

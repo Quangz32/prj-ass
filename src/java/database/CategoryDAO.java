@@ -35,7 +35,6 @@ public class CategoryDAO extends MyDAO {
         int idz;
         String namez;
 
-        ArrayList<Category> categories = new ArrayList<>();
         xSql = "select * from Categories where id = ?";
         try {
             ps = con.prepareStatement(xSql);
