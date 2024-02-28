@@ -49,10 +49,13 @@
                         <h4> <%= game.getName() %> </h4>
                         <span class="price"><em>$<%= game.getListedPrice() %></em> $<%= game.getDiscountPrice() %></span>
                         <p><%= game.getDetail().getIntroduction() %></p>
-                        <form id="qty" action="#">
-                            <input type="qty" class="form-control" id="1" aria-describedby="quantity" placeholder="1">
+
+                        <form id="qty" action="/Ass1/game/add_to_cart" method="post">
+                            <input type="qty" name="quantity" class="form-control" id="1" aria-describedby="quantity" value="1">
+                            <input type="number" name="game_id" value="<%= game.getId() %>" hidden>
                             <button type="submit"><i class="fa fa-shopping-bag"></i> ADD TO CART</button>
                         </form>
+
                         <ul>
                             <li><span>Game ID:</span><%= game.getId() %></li>
                             <li><span>Genre:</span> 

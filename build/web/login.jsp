@@ -27,7 +27,7 @@
         <div style="color: white;" class="page-heading">
             <div style="margin: auto; text-align: left; display: inline-block">
                 <h2 style="color: white; margin-bottom: 20px; text-align: center">Login</h2>
-                <form action="login" method="POST">
+                <form action="/Ass1/login" method="POST">
                     <label for="email" style="margin-right: 5px">Email </label>
                     <input value="<%= (fail_before) ? last_email : ""%>" type="email" id="email" name="email" style="float: right; color: black;" required><br><br>
 

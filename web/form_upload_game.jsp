@@ -18,7 +18,7 @@
         <div style="color: white;" class="page-heading">
             <div style="margin: auto; text-align: left; display: inline-block">
                 <h2 style="color: white; margin-bottom: 20px; text-align: center">Add a Game</h2>
-                <form action="admin/game/insert" method="POST" enctype="multipart/form-data">
+                <form action="/Ass1/admin/game/insert" method="POST" enctype="multipart/form-data">
                     <label for="gameName">Game Name:</label>
                     <input type="text" id="gameName" name="gameName" required><br><br>
 

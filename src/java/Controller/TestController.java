@@ -30,15 +30,24 @@ public class TestController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //response.sendRedirect("dashboard");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        
         CategoryDAO categoryDAO = new CategoryDAO();
         GameDAO gameDAO = new GameDAO();
         UserDAO uDAO = new UserDAO();
-
+        CartItemDAO ciDAO = new CartItemDAO();
+        
+        ciDAO.insert(new CartItem(1, 3, 4));
+        ciDAO.insert(new CartItem(2, 2, 2));
+        
+        ciDAO.update(new CartItem(1, 3, 9));
+        
+        out.println(ciDAO.getAll());
+        
         out.println(uDAO.getByEmailPassword("qui@gmail.com", "01"));
-
+        
         out.println(request.getSession().getAttribute("current_user"));
         //out.println(Lib.MyLib.hashString("Hello, World!"));
         //out.print(gDAO.getAll().toString().replaceAll("},", "},"+"\n"));

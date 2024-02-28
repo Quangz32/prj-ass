@@ -13,7 +13,7 @@
         <div class="thumb">
             <span style="display: none"> <%= game.getId() %></span>
             <a href="/Ass1/product/<%= game.getId() %>">    
-                <img src="<%= game.getImagePath() %>" alt="" style="height: 200px ">
+                <img src="<%= game.getImagePath() %>" alt="" style="height: 220px ">
             </a>
             <span class="price"><em>$<%= game.getListedPrice()%></em>$<%= game.getDiscountPrice()%></span>
         </div>

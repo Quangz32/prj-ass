@@ -40,20 +40,25 @@ public class InsertController extends HttpServlet {
 
         //Add categories inputted
         AddCategories(request);
-        
+
         //Add GameDetail
         AddGameDetail(request);
 
         request.getRequestDispatcher("/shop").forward(request, response);
     }
-    
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.getRequestDispatcher("/form_upload_game.jsp").forward(request, response);
+    }
+
     private void AddGameDetail(HttpServletRequest request) throws IOException, ServletException {
         String introz = request.getParameter("introduction");
         String descriptz = request.getParameter("description");
-        
+
         GameDAO gDAO = new GameDAO();
         Game newest_game = gDAO.getLast();
-        
+
         newest_game.addDetail(introz, descriptz);
     }
 
