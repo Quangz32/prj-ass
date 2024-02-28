@@ -83,6 +83,32 @@ public class UserDAO extends MyDAO {
         return null;    //return nothing
     }
 
+    public User getByEmailPassword(String email, String password) {
+
+        xSql = "select * from Users where email = ? and password = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, email);
+            ps.setString(2, Lib.MyLib.hashString(password));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int idz = rs.getInt("id");
+                String namez = rs.getString("name");
+                String gmailz = rs.getString("email");
+                String passwordz = rs.getString("password");
+                User user_i = new User(idz, namez, gmailz, passwordz);
+
+                return user_i;  //return 
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;    //return nothing
+    }
+
     public void insert(User userToInsert) {
         xSql = "insert into Users values (?,?,?)";
         try {

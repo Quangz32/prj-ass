@@ -4,6 +4,15 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%  
+    //true if the last log in attemp failed
+    boolean fail_before = (request.getAttribute("last_email") != null) ? true : false;
+    
+    String last_email = (String) request.getAttribute("last_email");
+    String last_password = (String) request.getAttribute("last_password");
+
+%>
 <html>
     <head>
         <title>Quangz | Login</title>
@@ -18,12 +27,16 @@
         <div style="color: white;" class="page-heading">
             <div style="margin: auto; text-align: left; display: inline-block">
                 <h2 style="color: white; margin-bottom: 20px; text-align: center">Login</h2>
-                <form action="admin/game/insert" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <form action="login" method="POST">
                     <label for="email" style="margin-right: 5px">Email </label>
-                    <input type="email" id="email" name="email" style="float: right; color: black;" required><br><br>
+                    <input value="<%= (fail_before) ? last_email : ""%>" type="email" id="email" name="email" style="float: right; color: black;" required><br><br>
 
                     <label for="password" style="margin-right: 5px">Password </label>
-                    <input type="password" id="password" name="password" style="float: right;" required><br><br>
+                    <input value="<%= (fail_before) ? last_password : ""%>" type="password" id="password" name="password" style="float: right;" required><br><br>
+
+                    <span id="login_error" style="color: orange;">
+                        <%= (fail_before) ? "Wrong email or password": ""  %>
+                    </span><br>
 
                     <input type="submit" value="Login" style="display: block; margin: 0 auto; border-radius: 6px">
                 </form>
@@ -35,24 +48,11 @@
 
         </div>
 
+
+
         <%@include file="shared/footer.jsp" %>
 
         <%@include file="shared/script_import.jsp" %>
 
-        <script>
-            function validateForm() {
-                var username = document.getElementById("username").value;
-                var password = document.getElementById("password").value;
-
-                if (username === "" || password === "") {
-                    alert("Please enter both username and password.");
-                    return false;
-                }
-
-                // Add additional validation logic here if needed
-
-                return true;
-            }
-        </script>
     </body>
 </html>

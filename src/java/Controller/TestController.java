@@ -30,11 +30,17 @@ public class TestController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         CategoryDAO categoryDAO = new CategoryDAO();
         GameDAO gameDAO = new GameDAO();
         UserDAO uDAO = new UserDAO();
+
+        out.println(uDAO.getByEmailPassword("qui@gmail.com", "01"));
+
+        out.println(request.getSession().getAttribute("current_user"));
+        //out.println(Lib.MyLib.hashString("Hello, World!"));
         //out.print(gDAO.getAll().toString().replaceAll("},", "},"+"\n"));
     }
 

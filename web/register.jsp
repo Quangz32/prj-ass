@@ -25,19 +25,19 @@
             <div style="margin: auto; text-align: left; display: inline-block">
                 <h2 style="color: white; margin-bottom: 20px; text-align: center">Register</h2>
                 <form action="register" method="post" onsubmit="return validateForm()">
-                    <label for="name" style="margin-right: 5px">Username </label>
+                    <label for="name" style="margin-right: 5px">Name </label>
                     <input type="text" id="name" name="name" style="float: right;" required><br><br>
 
                     <label for="email" style="margin-right: 5px">Email </label>
                     <input type="text" id="email" name="email" style="float: right;" required><br><br>
-                    <span id="email_used_error" style="color: orange;"></span><br><br>
+                    <span id="email_used_error" style="color: orange;"></span><br>
 
                     <label for="password" style="margin-right: 5px">Password </label>
                     <input type="password" id="password" name="password" style="float: right;" required><br><br>
 
                     <label for="password_confirm" style="margin-right: 5px">Password confirm</label>
                     <input type="password" id="password_confirm" name="password_confirm" style="float: right;" required><br>
-                    <span id="password_error" style="color: orange;"></span><br><br>
+                    <span id="password_error" style="color: orange;"></span><br>
 
                     <input type="submit" value="Register" style="display: block; margin: 0 auto; border-radius: 6px">
                 </form>
