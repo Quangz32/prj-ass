@@ -34,22 +34,9 @@ public class TestController extends HttpServlet {
 
         CategoryDAO categoryDAO = new CategoryDAO();
         GameDAO gameDAO = new GameDAO();
-
-//        Category cate = categoryDAO.getById(3);
-//        
-//        response.getWriter().println(cate.getGames());
-//        
-//        out.println(gameDAO.getById(4).getDetail().getIntroduction());
-
-        String input = MyLib.hashString("1111");
-
-        // Lấy nửa đầu của chuỗi
-        String firstHalf = input.substring(0, input.length() / 2);
-        out.println(firstHalf);
-
+        UserDAO uDAO = new UserDAO();
         //out.print(gDAO.getAll().toString().replaceAll("},", "},"+"\n"));
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

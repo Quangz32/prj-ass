@@ -25,7 +25,7 @@ public class GameDAO extends MyDAO {
                 discountPricez = rs.getInt("discountPrice");
                 imageURLz = rs.getString("imageURL");
                 Game game_i = new Game(idz, namez, listedPricez, discountPricez, imageURLz);
-                System.out.println(game_i);
+                //System.out.println(game_i);
                 gameList.add(game_i);
             }
             rs.close();
