@@ -49,13 +49,8 @@ public class AddToCartController extends HttpServlet {
         int game_id = Integer.parseInt(game_id_String);
         int quantity = Integer.parseInt(quantity_String);
 
-        out.println(game_id + " " + quantity);
-        out.println("current user: " + current_user.getId());
-
         CartItemDAO ciDAO = new CartItemDAO();
         CartItem cart_item = ciDAO.getByUserIdAndGameId(current_user.getId(), game_id);
-
-        out.print("cart_item: " + cart_item);
 
         if (cart_item == null) {
 
@@ -70,7 +65,7 @@ public class AddToCartController extends HttpServlet {
         }
 
         //response.sendRedirect("/dashboard");
-        //request.getRequestDispatcher("/dashboard").forward(request, response);
+        request.getRequestDispatcher("/shop").forward(request, response);
     }
 
     @Override

@@ -57,6 +57,37 @@ public class CartItemDAO extends MyDAO {
         return null;
 
     }
+    
+    public ArrayList<CartItem> getByUserId(int user_id) {
+        
+        int user_idz;
+        int game_idz;
+        int quantityz;
+        
+        ArrayList<CartItem> cart_items = new ArrayList<>();
+
+        xSql = "select * from CartItems where userId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, user_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                user_idz = rs.getInt("userId");
+                game_idz = rs.getInt("gameId");
+                quantityz = rs.getInt("quantity");
+                CartItem cart_item = new CartItem(user_idz, game_idz, quantityz);
+
+                cart_items.add(cart_item);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return cart_items;
+
+    }
 
     public void insert(CartItem cart_item) {
         xSql = "insert into CartItems values (?,?,?)";

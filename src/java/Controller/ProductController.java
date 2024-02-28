@@ -40,10 +40,17 @@ public class ProductController extends HttpServlet {
             GameDAO gamedao = new GameDAO();
             Game game_to_show = gamedao.getById(game_id);
 
-            request.setAttribute("game_to_show", game_to_show);
+            if (game_to_show == null) {
+                //request.getRequestDispatcher("/dashboard").forward(request, response);
+                response.sendRedirect("/Ass1/dashboard");
+            } else {
+                request.setAttribute("game_to_show", game_to_show);
+                request.getRequestDispatcher("/product-details.jsp").forward(request, response);
+            }
+
         }
 
-        request.getRequestDispatcher("/product-details.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

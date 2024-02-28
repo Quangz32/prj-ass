@@ -20,9 +20,24 @@
     
     //Login or not
         User current_user = (User) request.getSession().getAttribute("current_user");
-
     
 %>
+
+<style>
+    .cart-number{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
 
 <header class="header-area">    <!-- header-sticky removed: red background-->
     <div class="container">
@@ -44,16 +59,23 @@
                                 if (current_user != null){
                             %>
                         <li>
-                            <a href="/Ass1/login" class="active" style="font-weight: bold;"><%= current_user.getName()%></a>
+                            <a href="/Ass1/login" class="" style="font-weight: bold;"><%= current_user.getName()%></a>
                         </li>
                         <li>
-                            <img width="36" height="36" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/shopping-trolley--v1.png" alt="shopping-trolley--v1"/>
+                            <a href="/Ass1/cart">
+                                <div style="position: relative; cursor: pointer;">
+                                    <img width="36" height="36" src="/Ass1/assets/images/shop_cart.png"/>
+                                    <div class="cart-number">
+                                        <span style="color: white; font-weight: 500; font-size: 12px;"><%= current_user.numberOfCartItem() %></span>
+                                    </div>
+                                </div>                           
+                            </a>
                         </li>
+<!--                        <li><a></a></li>-->
 
                         <% } else {%>
                         <li><a href="/Ass1/login" class="active" style="font-weight: bold;">Login</a></li>
                             <% } %>
-
 
                     </ul>   
                     <a class='menu-trigger'>
