@@ -19,7 +19,7 @@
     }
     
     //Login or not
-        User current_user = (User) request.getSession().getAttribute("current_user");
+    User current_user = (User) request.getSession().getAttribute("current_user");
     
 %>
 
@@ -71,7 +71,7 @@
                                 </div>                           
                             </a>
                         </li>
-<!--                        <li><a></a></li>-->
+                        <!--                        <li><a></a></li>-->
 
                         <% } else {%>
                         <li><a href="/Ass1/login" class="active" style="font-weight: bold;">Login</a></li>

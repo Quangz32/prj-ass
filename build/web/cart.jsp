@@ -24,43 +24,63 @@
 
         <div class="page-heading">
             <div>
-                <!--                        <h2 style="color: white; margin-bottom: 20px; text-align: center">This is your cart</h2>-->
-                <h2 class="mb-xxl-5">This is your cart</h2>
+                <h2 style="margin-bottom: 50px; color: white;">The best cart ever!</h2>
             </div>
-            <div style="width: 50%; margin: 0 auto">
 
-                <% 
-                    CartItemDAO ciDAO = new CartItemDAO();
-                    ArrayList<CartItem> cart_items = ciDAO.getByUserId(current_user.getId());
+            <form>
+
+                <div style="width: 60%; margin: 0 auto">
+
+                    <% 
+                        CartItemDAO ciDAO = new CartItemDAO();
+                        ArrayList<CartItem> cart_items = ciDAO.getByUserId(current_user.getId());
                     
-                    for (CartItem cart_item : cart_items) {
-                %>
+                        for (CartItem cart_item : cart_items) {
+                    %>
 
-                <%//= cart_item.getQuantity()%>
+                    <%@include file="shared/cart_item.jsp" %>
 
-                <%@include file="shared/cart_item.jsp" %>
-
-                <% 
-                    } 
-                %>
+                    <% 
+                        } 
+                    %>
 
 
-            </div>
+                </div>
 
-
-            <br><br><br><br><br><br><br><br><br><br>
+            </form>
             <br><br><br><br><br><br><br><br><br><br>
 
-
-
-
-        </div>-->
-
-
+        </div>
 
         <%@include file="shared/footer.jsp" %>
 
         <%@include file="shared/script_import.jsp" %>
 
     </body>
+
+    <script>
+        function toggleContent(cart_item_id) {
+            let intro_open = document.getElementById("intro-open-" + cart_item_id);
+            let intro_close = document.getElementById("intro-close-" + cart_item_id);
+
+
+            if (intro_open.style.display == "none") {
+                intro_open.style.display = "inline-block";
+                intro_close.style.display = "none";
+            } else {
+                intro_open.style.display = "none";
+                intro_close.style.display = "inline-block";
+            }
+        }
+
+        function showTotal(checkbox, gameId) {
+            var total = document.getElementById("total-" + gameId);
+
+            if (checkbox.checked) {
+                total.classList.remove("d-none");
+            } else {
+                total.classList.add("d-none");
+            }
+        }
+    </script>
 </html>
