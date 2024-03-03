@@ -3,8 +3,7 @@
 <%@page import = "database.*" %>
 
 <%
-    Game game = (Game) request.getAttribute("game_to_show");
-    
+    Game game = (Game) request.getAttribute("game_to_show");  
 %>
 
 <!DOCTYPE html>

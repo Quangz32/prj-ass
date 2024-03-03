@@ -33,7 +33,7 @@
 
                     <% 
                         CartItemDAO ciDAO = new CartItemDAO();
-                        ArrayList<CartItem> cart_items = ciDAO.getByUserId(current_user.getId());
+                        ArrayList<CartItem> cart_items = ciDAO.getByUserIdAndStatus(current_user.getId(), "in_cart");
                     
                         for (CartItem cart_item : cart_items) {
                     %>

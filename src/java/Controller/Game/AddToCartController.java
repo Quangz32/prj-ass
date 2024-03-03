@@ -50,18 +50,17 @@ public class AddToCartController extends HttpServlet {
         int quantity = Integer.parseInt(quantity_String);
 
         CartItemDAO ciDAO = new CartItemDAO();
-        CartItem cart_item = ciDAO.getByUserIdAndGameId(current_user.getId(), game_id);
+        CartItem cart_item = ciDAO.getByUserIdAndGameIdAndStatus(current_user.getId(), game_id, "in_cart");
 
         if (cart_item == null) {
-
-            out.println("cartitrem is null");
-            cart_item = new CartItem(current_user.getId(), game_id, quantity);
+            //out.println("cartitrem is null");
+            cart_item = new CartItem(-1, current_user.getId(), game_id, quantity, "in_cart");
             ciDAO.insert(cart_item);
         } else {
             int quantity_new = cart_item.getQuantity() + quantity;
-            cart_item.setQuantity(quantity_new);
+            //cart_item.setQuantity(quantity_new);
             out.println(cart_item);
-            ciDAO.update(cart_item);
+            ciDAO.updateQuantity(cart_item.getId(), quantity_new);
         }
 
         //response.sendRedirect("/dashboard");

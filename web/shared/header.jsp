@@ -60,7 +60,7 @@ User current_user = (User) request.getSession().getAttribute("current_user");
                                 <div class="position-relative qz-cursor-pointer">
                                     <img width="36" height="36" src="/Ass1/assets/images/shop_cart.png"/>
                                     <div class="cart-number"> 
-                                        <span class="text-white fw-medium">${current_user.numberOfCartItem()}</span>
+                                        <span class="text-white fw-medium">${current_user.numberOfItemInCart()}</span>
                                     </div>
                                 </div>                           
                             </a>

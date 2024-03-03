@@ -39,8 +39,8 @@ public class CartController extends HttpServlet {
             throws ServletException, IOException {
         String[] game_ids = request.getParameterValues("cart-items");
         User c_user = (User) request.getSession().getAttribute("current_user");
-        
-        if (c_user == null){
+
+        if (c_user == null) {
             request.getRequestDispatcher("login").forward(request, response);
             return;
         }
@@ -51,14 +51,14 @@ public class CartController extends HttpServlet {
         if (game_ids != null) {
             for (int i = 0; i < game_ids.length; i++) {
                 int game_id = Integer.parseInt(game_ids[i]);
-                CartItem cart_item = ciDAO.getByUserIdAndGameId(c_user.getId(), game_id);
+                CartItem cart_item = ciDAO.getByUserIdAndGameIdAndStatus(c_user.getId(), game_id, "in_cart");
                 cart_items.add(cart_item);
                 //response.getWriter().println(cart_item);
             }
         }
-        
-        request.setAttribute("cart_items",  cart_items);
-        
+
+        request.setAttribute("cart_items", cart_items);
+
         request.getRequestDispatcher("cart_confirm.jsp").forward(request, response);
 
     }

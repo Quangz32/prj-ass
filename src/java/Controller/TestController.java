@@ -33,13 +33,15 @@ public class TestController extends HttpServlet {
         //response.sendRedirect("dashboard");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         CategoryDAO categoryDAO = new CategoryDAO();
         GameDAO gameDAO = new GameDAO();
         UserDAO uDAO = new UserDAO();
         CartItemDAO ciDAO = new CartItemDAO();
 
-        out.println();
+//        Game game = gameDAO.getById(4);
+//        out.println(game.getDetail());
+        //out.println(ciDAO.getByUserIdAndStatus(4, "in_cart"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

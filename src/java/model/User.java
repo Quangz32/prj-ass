@@ -2,6 +2,7 @@ package model;
 
 import database.*;
 import java.util.ArrayList;
+import java.sql.ResultSet;
 
 public class User {
 
@@ -56,19 +57,20 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + '}';
     }
-    
+
     ///
-    public int numberOfCartItem(){
+    public int numberOfItemInCart() {
         CartItemDAO ciDAO = new CartItemDAO();
-        ArrayList<CartItem> cart_items= ciDAO.getByUserId(this.id);
-        
+        ArrayList<CartItem> cart_items = ciDAO.getByUserIdAndStatus(this.id, "in_cart");
+
         int number_of_item = 0;
-        for (CartItem cart_item : cart_items){
-                number_of_item += cart_item.getQuantity();
-                if (number_of_item > 99) return 99;
-        } 
+        for (CartItem cart_item : cart_items) {
+            number_of_item += cart_item.getQuantity();
+            if (number_of_item > 99) {
+                return 99;
+            }
+        }
         return number_of_item;
     }
-    
 
 }
