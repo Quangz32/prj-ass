@@ -26,10 +26,10 @@
             <div>
                 <h2 style="margin-bottom: 50px; color: white;">The best cart ever!</h2>
             </div>
+            <div style="width: 60%; margin: 0 auto">
+                <form action="cart" method="post">
 
-            <form>
 
-                <div style="width: 60%; margin: 0 auto">
 
                     <% 
                         CartItemDAO ciDAO = new CartItemDAO();
@@ -44,10 +44,28 @@
                         } 
                     %>
 
+                    <hr class="border-5" style="">
 
-                </div>
+                    <div class="row mt-5">
+                        <div class="col-lg-2">
+                            <input type="checkbox" class="big-checkbox-3" id="check-all" onchange="checkAll(this)">
+                            <span for="check-all" class="ms-3">All</span>
+                        </div>
 
-            </form>
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-7">
+                            <input type="submit" value="Next">
+
+                        </div>
+
+
+                    </div>
+
+
+                </form>
+            </div>
+
+
             <br><br><br><br><br><br><br><br><br><br>
 
         </div>
@@ -73,8 +91,18 @@
             }
         }
 
+        // Show total of a cart-item =================
+        const checkboxes = document.getElementsByName('cart-items');
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener("change", function () {
+                const gameId = this.value;
+                showTotal(this, gameId);
+            });
+        });
+
         function showTotal(checkbox, gameId) {
-            var total = document.getElementById("total-" + gameId);
+            const total = document.getElementById("total-" + gameId);
 
             if (checkbox.checked) {
                 total.classList.remove("d-none");
@@ -82,5 +110,19 @@
                 total.classList.add("d-none");
             }
         }
+
+        // Check all checkbox in cart!====================
+        document.getElementById("check-all").addEventListener("change", function () {
+            const checkboxes = document.getElementsByName('cart-items');
+            const checkAllCheckbox = document.getElementById("check-all");
+
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = checkAllCheckbox.checked;
+                const gameId = checkbox.value;
+                showTotal(checkbox, gameId);
+            });
+        });
+
+
     </script>
 </html>

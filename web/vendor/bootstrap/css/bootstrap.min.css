@@ -393,9 +393,7 @@ button,select{
 [role=button]{
     cursor:pointer
 }
-.qz-cursor-pointer{
-    cursor:pointer
-}
+
 select{
     word-wrap:normal
 }

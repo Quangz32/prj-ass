@@ -9,5 +9,6 @@
 <link rel="stylesheet" href="/Ass1/assets/css/templatemo-lugx-gaming.css">
 <link rel="stylesheet" href="/Ass1/assets/css/owl.css">
 <link rel="stylesheet" href="/Ass1/assets/css/animate.css">
+<link rel="stylesheet" href="/Ass1/assets/css/qz-style.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--

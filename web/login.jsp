@@ -14,8 +14,7 @@
     String last_email = null;
     String last_password = null;
 
-    if (cookies
-        != null) {
+    if (cookies != null) {
        for (Cookie cookie : cookies) {
             if (cookie.getName().equals("email")) {
                 last_email = cookie.getValue();
@@ -51,10 +50,10 @@
                 <h2 style="color: white; margin-bottom: 20px; text-align: center">Login</h2>
                 <form action="/Ass1/login" method="POST">
                     <label for="email" style="margin-right: 5px">Email </label>
-                    <input value="<%= last_email %>" type="email" id="email" name="email" style="float: right; color: black;" required><br><br>
+                    <input value="<%= (last_email != null) ? last_email : "" %>" type="email" id="email" name="email" style="float: right; color: black;" required><br><br>
 
                     <label for="password" style="margin-right: 5px">Password </label>
-                    <input value="<%= last_password %>" type="password" id="password" name="password" style="float: right;" required><br><br>
+                    <input value="<%= (last_password != null) ? last_password : "" %>" type="password" id="password" name="password" style="float: right;" required><br><br>
 
                     <span id="login_error" style="color: orange;">
                         <%= (fail_before) ? "Wrong email or password": ""  %>

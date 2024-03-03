@@ -19,25 +19,11 @@
     }
     
     //Login or not
-    User current_user = (User) request.getSession().getAttribute("current_user");
+User current_user = (User) request.getSession().getAttribute("current_user");
     
 %>
 
-<style>
-    .cart-number{
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-</style>
 
 <header class="header-area">    <!-- header-sticky removed: red background-->
     <div class="container">
@@ -51,22 +37,30 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="/Ass1/dashboard"   class="<%= pageId==0 ? "active" : "" %>">Home</a></li>
-                        <li><a href="/Ass1/shop"        class="<%= pageId==1 ? "active" : "" %>">Our Shop</a></li>
-                        <li style="display: none"><a href="/Ass1/product"     class="<%= pageId==2 ? "active" : "" %>">Product Details</a></li>
-                        <li><a href="/Ass1/contact"     class="<%= pageId==3 ? "active" : "" %>">Contact Us</a></li>
-                            <%
-                                if (current_user != null){
-                            %>
                         <li>
-                            <a href="/Ass1/login" class="" style="font-weight: bold;"><%= current_user.getName()%></a>
+                            <a href="/Ass1/dashboard"   class="<%= pageId==0 ? "active" : "" %>">Home</a>
+                        </li>
+                        <li>
+                            <a href="/Ass1/shop"        class="<%= pageId==1 ? "active" : "" %>">Our Shop</a>
+                        </li>
+                        <li class="d-none">
+                            <a href="/Ass1/product" class="<%= pageId==2 ? "active" : "" %>">Product Details</a>
+                        </li>
+                        <li>
+                            <a href="/Ass1/contact"     class="<%= pageId==3 ? "active" : "" %>">Contact Us</a>
+                        </li>
+                        <%
+                            if (current_user != null){
+                        %>
+                        <li>
+                            <a href="/Ass1/login" class="fw-bold"><%= current_user.getName()%></a>
                         </li>
                         <li>
                             <a href="/Ass1/cart">
-                                <div style="position: relative; cursor: pointer;">
+                                <div class="position-relative qz-cursor-pointer">
                                     <img width="36" height="36" src="/Ass1/assets/images/shop_cart.png"/>
-                                    <div class="cart-number">
-                                        <span style="color: white; font-weight: 500; font-size: 12px;"><%= current_user.numberOfCartItem() %></span>
+                                    <div class="cart-number"> 
+                                        <span class="text-white fw-medium">${current_user.numberOfCartItem()}</span>
                                     </div>
                                 </div>                           
                             </a>

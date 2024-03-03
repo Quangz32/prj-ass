@@ -1,5 +1,7 @@
 package model;
 
+import database.GameDAO;
+
 public class CartItem {
 
     int userId;
@@ -39,6 +41,12 @@ public class CartItem {
     @Override
     public String toString() {
         return "CartItem{" + "userId=" + userId + ", gameId=" + gameId + ", quantity=" + quantity + '}';
+    }
+    
+    // GET GAME MODEL
+    public Game getGame(){
+        GameDAO gDAO = new GameDAO();
+        return gDAO.getById(this.gameId);
     }
 
 }

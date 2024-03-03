@@ -1,0 +1,24 @@
+.cart-number{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qz-cursor-pointer{
+    cursor:pointer
+}
+
+.cart-number span{
+    font-size: 12px
+}
+
+.big-checkbox-3{
+    transform: scale(3) !important
+}
