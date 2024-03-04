@@ -20,9 +20,7 @@
 
 
 
-        <div id="notification" class="notification">
-            <p id="notification-message">.....</p>
-        </div>
+        
 
 
         <div class="main-banner">
@@ -355,62 +353,7 @@
 
         <%@include file="shared/footer.jsp" %>
 
-        <%@include file="shared/script_import.jsp" %>
-
-        <script>
-            let notification = document.getElementById("notification");
-
-            function showNotification() {
-                notification.style.opacity = "0";
-                notification.style.display = "block";
-                fadeIn();
-                setTimeout(hideNotification, 5000);
-            }
-
-            function hideNotification() {
-                fadeOut();
-                setTimeout(function () {
-                    notification.style.display = "none";
-                }, 500);
-            }
-
-            function fadeIn() {
-                var opacity = 0;
-                var interval = setInterval(function () {
-                    if (opacity < 1) {
-                        opacity += 0.1;
-                        notification.style.opacity = opacity;
-                    } else {
-                        clearInterval(interval);
-                    }
-                }, 50);
-            }
-
-            function fadeOut() {
-                var opacity = 1;
-                var interval = setInterval(function () {
-                    if (opacity > 0) {
-                        opacity -= 0.1;
-                        notification.style.opacity = opacity;
-                    } else {
-                        clearInterval(interval);
-                    }
-                }, 50);
-            }
-
-            <%
-                String notification_message = (String) request.getAttribute("notification-message");
-                if (notification_message != null){ %>
-
-            let notification_message = document.getElementById("notification-message");
-
-            notification_message.innerHTML = "<%= notification_message %>";
-
-            showNotification();
-            <% } %>
-
-
-        </script>
+        <%@include file="shared/script_import.jsp" %>   
 
     </body>
 </html>

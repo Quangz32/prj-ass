@@ -22,4 +22,8 @@ public class MyLib {
         }
     }
 
+    public static boolean isOrderSuccess() {
+        return true;
+    }
+
 }

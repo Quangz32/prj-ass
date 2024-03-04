@@ -13,14 +13,14 @@
         <div class="thumb">
             <span style="display: none"> <%= game.getId() %></span>
             <a href="/Ass1/product/<%= game.getId() %>">    
-                <img src="<%= game.getImagePath() %>" alt="" style="height: 220px ">
+                <img src="<%= game.getImagePath() %>" style="height: 220px ">
             </a>
             <span class="price"><em>$<%= game.getListedPrice()%></em>$<%= game.getDiscountPrice()%></span>
         </div>
         <div class="down-content">
             <span class="category">Action</span>
             <h4><%= game.getName() %></h4>
-            <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+            <a href="product/<%= game.getId() %>"><i class="fa fa-shopping-bag"></i></a>
         </div>
     </div>
 </div>

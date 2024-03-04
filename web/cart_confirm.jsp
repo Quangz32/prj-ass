@@ -27,7 +27,7 @@
                 <h2 style="margin-bottom: 50px; color: white;">Let's confirm your order!</h2>
             </div>
             <div style="width: 60%; margin: 0 auto" class="">
-                <form action="order" method="post">
+                <form action="pay" method="post">
                     <table class="row table table-bordered text-white">
                         <tr>
                             <th class="col-lg-1"></th>
@@ -40,7 +40,7 @@
 
                         
                         <c:set var="i" value="1"/>
-                        <c:set var="sum_total" value="0"/>
+                        <c:set var="order_total" value="0"/>
                             
                         <c:forEach var="item" items="${cart_items}">
                             <input class="d-none" type="text" name="card_items" value="${item.id}">
@@ -53,7 +53,7 @@
                                 <td class="col-lg-2">${item.getGame().discountPrice}</td>
                                 <td class="col-lg-1">${item.quantity}</td>
                                 <td class="col-lg-2">$${item.getGame().discountPrice * item.quantity}</td>
-                                <c:set var="sum_total" value="${sum_total + item.getGame().discountPrice * item.quantity}" />
+                                <c:set var="order_total" value="${order_total + item.getGame().discountPrice * item.quantity}" />
                             </tr>
 
                             <c:set var="i" value="${i+1}"/>
@@ -67,11 +67,12 @@
                                 <td class="col-lg-3"></td>
                                 <td class="col-lg-2"></td>
                                 <td class="col-lg-1">Total: </td>
-                                <td class="col-lg-2">$${sum_total }</td>
+                                <td class="col-lg-2">$${order_total }</td>
                             </tr>   
 
                     </table>
                             
+                            <input type="text" name="order_total" value="${order_total}" class="d-none"> 
                             <input class="mt-3" type="submit" value="I want to buy them!">
 
                 </form>

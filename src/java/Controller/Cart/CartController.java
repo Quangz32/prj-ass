@@ -37,9 +37,9 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] game_ids = request.getParameterValues("cart-items");
+        String[] cart_item_ids = request.getParameterValues("cart-items");
+        
         User c_user = (User) request.getSession().getAttribute("current_user");
-
         if (c_user == null) {
             request.getRequestDispatcher("login").forward(request, response);
             return;
@@ -48,10 +48,10 @@ public class CartController extends HttpServlet {
         ArrayList<CartItem> cart_items = new ArrayList<>();
         CartItemDAO ciDAO = new CartItemDAO();
 
-        if (game_ids != null) {
-            for (int i = 0; i < game_ids.length; i++) {
-                int game_id = Integer.parseInt(game_ids[i]);
-                CartItem cart_item = ciDAO.getByUserIdAndGameIdAndStatus(c_user.getId(), game_id, "in_cart");
+        if (cart_item_ids != null) {
+            for (int i = 0; i < cart_item_ids.length; i++) {
+                int cart_item_id = Integer.parseInt(cart_item_ids[i]);
+                CartItem cart_item = ciDAO.getById(cart_item_id);
                 cart_items.add(cart_item);
                 //response.getWriter().println(cart_item);
             }

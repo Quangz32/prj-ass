@@ -103,13 +103,13 @@
 
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener("change", function () {
-                const gameId = this.value;
-                showTotal(this, gameId);
+                const cartItemId = this.value;
+                showTotal(this, cartItemId);
             });
         });
 
-        function showTotal(checkbox, gameId) {
-            const total = document.getElementById("total-" + gameId);
+        function showTotal(checkbox, cartItemId) {
+            const total = document.getElementById("total-" + cartItemId);
 
             if (checkbox.checked) {
                 total.classList.remove("d-none");
@@ -120,7 +120,7 @@
 
         // Check all checkbox in cart!====================
         document.getElementById("check-all").addEventListener("change", function () {
-            const checkboxes = document.getElementsByName('cart-items');
+            const checkboxes = document.getElementsByName("cart-items");
             const checkAllCheckbox = document.getElementById("check-all");
 
             checkboxes.forEach((checkbox) => {

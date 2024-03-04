@@ -11,7 +11,7 @@
 <div class="row" style="margin-bottom: 30px;">
 
     <div class="col-lg-1 d-flex justify-content-center align-items-center">
-        <input type="checkbox" name="cart-items" value="<%= cart_item.getGameId() %>" 
+        <input type="checkbox" name="cart-items" value="<%= cart_item.getId() %>" 
                 class="big-checkbox-3">        
     </div>
 
@@ -48,7 +48,7 @@
 
     </div>
 
-    <div id="total-<%= game.getId() %>" class="d-none col-lg-1 d-flex justify-content-center align-items-center hiding">
+    <div id="total-<%= cart_item.getId() %>" class="d-none col-lg-1 d-flex justify-content-center align-items-center hiding">
         <span class="ms-3 fs-2">
             $<%= cart_item.getQuantity() * game.getDiscountPrice() %>
         </span>
