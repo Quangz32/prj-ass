@@ -24,13 +24,26 @@
 }
 
 .notification {
-  display: none;
-  border-radius: 20px;
-  position: fixed;
-  top: 8rem;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+    display: none;
+    border-radius: 20px;
+    position: fixed;
+    top: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.drop-menu {
+    display: none;
+    width: 12%;
+    border-radius: 20px;
+    margin-right: 128px;
+    position: fixed;
+    top: 100px;
+    right: 0rem;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
 }

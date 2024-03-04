@@ -27,6 +27,11 @@ User current_user = (User) request.getSession().getAttribute("current_user");
 
 <header class="header-area">    <!-- header-sticky removed: red background-->
     <div class="container">
+        <div class="drop-menu" id="drop-menu">
+            <a href="logout">Logout</a><br/>
+            <a>Order history</a><br/>
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
@@ -36,6 +41,7 @@ User current_user = (User) request.getSession().getAttribute("current_user");
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
+
                     <ul class="nav">
                         <li>
                             <a href="/Ass1/dashboard"   class="<%= pageId==0 ? "active" : "" %>">Home</a>
@@ -53,7 +59,13 @@ User current_user = (User) request.getSession().getAttribute("current_user");
                             if (current_user != null){
                         %>
                         <li>
-                            <a href="/Ass1/login" class="fw-bold"><%= current_user.getName()%></a>
+                            <a class="fw-bold d-inline-block text-white">
+                                <%= current_user.getName()%>
+                            </a>
+
+                            <img src="/Ass1/assets/images/menu-button.png" id="menu-button" 
+                                 alt="alt" style = " width: 25px" class="qz-cursor-pointer"/>
+
                         </li>
                         <li>
                             <a href="/Ass1/cart">
@@ -81,4 +93,44 @@ User current_user = (User) request.getSession().getAttribute("current_user");
         </div>
     </div>
 </header>
+
+<script>
+    let menu_button = document.getElementById("menu-button");
+    let drop_menu = document.getElementById("drop-menu");
+    let is_menu_open = false;
+
+    menu_button.addEventListener("click", function () {
+        if (is_menu_open == false) {
+            showDropMenu();
+        } else {
+            hideDropMenu();
+        }
+
+        is_menu_open = !is_menu_open;
+    });
+
+    function showDropMenu() {
+        drop_menu.style.opacity = "0";
+        drop_menu.style.display = "block";
+        fadeInDropMenu();
+    }
+
+    function hideDropMenu() {
+        drop_menu.style.display = "none";
+
+    }
+
+    function fadeInDropMenu() {
+        var opacity = 0;
+        var interval = setInterval(function () {
+            if (opacity < 1) {
+                opacity += 0.1;
+                drop_menu.style.opacity = opacity;
+            } else {
+                clearInterval(interval);
+            }
+        }, 20);
+    }
+
+</script>
 <!-- ***** Header Area End ***** -->

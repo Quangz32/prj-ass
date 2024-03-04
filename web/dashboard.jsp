@@ -18,6 +18,8 @@
 
         <%@include file="shared/header.jsp" %>
 
+
+
         <div id="notification" class="notification">
             <p id="notification-message">.....</p>
         </div>
@@ -395,16 +397,16 @@
                     }
                 }, 50);
             }
-            
+
             <%
                 String notification_message = (String) request.getAttribute("notification-message");
                 if (notification_message != null){ %>
-               
-                let notification_message = document.getElementById("notification-message");
-                
-                notification_message.innerHTML = "<%= notification_message %>";
-                
-                showNotification();
+
+            let notification_message = document.getElementById("notification-message");
+
+            notification_message.innerHTML = "<%= notification_message %>";
+
+            showNotification();
             <% } %>
 
 
