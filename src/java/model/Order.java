@@ -4,7 +4,9 @@
  */
 package model;
 
+import database.OrderItemDAO;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 
 public class Order {
@@ -47,4 +49,9 @@ public class Order {
         return "Order{" + "id=" + id + ", userId=" + userId + ", orderDate=" + orderDate + '}';
     }
     
+    ///
+    public ArrayList<OrderItem> getOrderItems(){
+        OrderItemDAO oiDAO = new OrderItemDAO();
+        return oiDAO.getByOrderId(this.id);
+    }
 }

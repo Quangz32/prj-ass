@@ -44,6 +44,24 @@ public class OrderItemDAO extends MyDAO {
         }
         return null;
     }
+    
+    public ArrayList<OrderItem> getByOrderId(int order_id) {
+        ArrayList<OrderItem> order_items = new ArrayList<>();
+        xSql = "select * from OrderItems where orderId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, order_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                order_items.add(getOrderItem(rs));
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return order_items;
+    }
 
     public void insert(OrderItem order_item) {
         xSql = "insert into OrderItems (orderId, cartItemId, price) values (?,?,?)";

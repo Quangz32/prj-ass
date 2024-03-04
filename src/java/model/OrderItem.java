@@ -4,6 +4,8 @@
  */
 package model;
 
+import database.CartItemDAO;
+
 public class OrderItem {
     private int id;
     private int orderId;
@@ -53,6 +55,11 @@ public class OrderItem {
     public String toString() {
         return "OrderItem{" + "id=" + id + ", orderId=" + orderId + ", cartItemId=" + cartItemId + ", price=" + price + '}';
     }
-
     
+    ///
+    public CartItem getCartItem(){
+        CartItemDAO ciDAO = new CartItemDAO();
+        return ciDAO.getById(this.cartItemId);
+    }
+ 
 }

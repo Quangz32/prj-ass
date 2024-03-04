@@ -6,11 +6,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
-    //User current_user = (User) request.getSession().getAttribute("current_user");  
-    ArrayList<CartItem> cart_items = (ArrayList<CartItem>) request.getAttribute("cart_items");
-%>
-
 <html>
     <head>
         <title>Quangz | Cart</title>

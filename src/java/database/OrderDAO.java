@@ -45,6 +45,24 @@ public class OrderDAO extends MyDAO {
         }
         return null;
     }
+    
+    public ArrayList<Order> getByUserId(int user_id) {
+        ArrayList<Order> order_items = new ArrayList<>();
+        xSql = "select * from Orders where userId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, user_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                order_items.add(getOrder(rs));
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return order_items;
+    }
 
     public Order getLast() {
         xSql = "select TOP 1 * from Orders ORDER BY id DESC";

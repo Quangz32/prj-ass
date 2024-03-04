@@ -46,8 +46,8 @@ public class TestController extends HttpServlet {
         
         //oDAO.insert(order1);
         
-        oiDAO.insert(new OrderItem(1, 4, 2, 10));
-        out.print(oiDAO.getAll());
+        //oiDAO.insert(new OrderItem(1, 4, 2, 10));
+        //out.print(oDAO.getByUserId(1));
 
 //        Game game = gameDAO.getById(4);
 //        out.println(game.getDetail());
