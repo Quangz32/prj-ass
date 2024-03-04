@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.time.LocalDateTime;
 
 // You shouldnot care about this class, it just be use to test functions
 @WebServlet(name = "TestController", urlPatterns = {"/test"})
@@ -38,6 +39,15 @@ public class TestController extends HttpServlet {
         GameDAO gameDAO = new GameDAO();
         UserDAO uDAO = new UserDAO();
         CartItemDAO ciDAO = new CartItemDAO();
+        OrderItemDAO oiDAO = new OrderItemDAO();
+        OrderDAO oDAO = new OrderDAO();
+        
+        //Order order1 = oDAO.getById(2);
+        
+        //oDAO.insert(order1);
+        
+        oiDAO.insert(new OrderItem(1, 4, 2, 10));
+        out.print(oiDAO.getAll());
 
 //        Game game = gameDAO.getById(4);
 //        out.println(game.getDetail());

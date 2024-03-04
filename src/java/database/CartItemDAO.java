@@ -24,6 +24,24 @@ public class CartItemDAO extends MyDAO {
         return (cart_items);
     }
 
+    public CartItem getById(int id) {
+        xSql = "select * from CartItems where id = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return getCartItem(rs);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (null);
+    }
+
     public ArrayList<CartItem> getByUserIdAndStatus(int user_id, String status) {
         ArrayList<CartItem> cart_items = new ArrayList<>();
         xSql = "select * from CartItems where userId = ? and status = ?";
@@ -151,7 +169,7 @@ public class CartItemDAO extends MyDAO {
             e.printStackTrace();
         }
     }
-    
+
     public void updateStatus(int card_item_id, String new_status) {
         xSql = "update CartItems set status = ? where id = ?";
         try {
