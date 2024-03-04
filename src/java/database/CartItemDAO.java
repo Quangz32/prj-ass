@@ -151,6 +151,21 @@ public class CartItemDAO extends MyDAO {
             e.printStackTrace();
         }
     }
+    
+    public void updateStatus(int card_item_id, String new_status) {
+        xSql = "update CartItems set status = ? where id = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            // ps.setInt(1, cart_item.getId());
+            ps.setString(1, new_status);
+            ps.setInt(2, card_item_id);
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // Get a CartItem from curren rs =====================
     private CartItem getCartItem(ResultSet rs) throws Exception {

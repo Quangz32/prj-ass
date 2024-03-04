@@ -27,7 +27,7 @@
                 <h2 style="margin-bottom: 50px; color: white;">Let's confirm your order!</h2>
             </div>
             <div style="width: 60%; margin: 0 auto" class="">
-                <form action="cart" method="post">
+                <form action="order" method="post">
                     <table class="row table table-bordered text-white">
                         <tr>
                             <th class="col-lg-1"></th>
@@ -43,6 +43,7 @@
                         <c:set var="sum_total" value="0"/>
                             
                         <c:forEach var="item" items="${cart_items}">
+                            <input class="d-none" type="text" name="card_items" value="${item.id}">
                             <tr>
                                 <td class="col-lg-1">${i}</td>
                                 <td class="col-lg-3">
@@ -70,7 +71,8 @@
                             </tr>   
 
                     </table>
-
+                            
+                            <input class="mt-3" type="submit" value="I want to buy them!">
 
                 </form>
             </div>

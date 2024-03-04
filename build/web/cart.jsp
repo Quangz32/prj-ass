@@ -5,11 +5,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
-    //The current_user already include in include file="shared/header.jsp" : line 23
-    //User current_user = (User) request.getSession().getAttribute("current_user");
-    
-%>
+
 
 <html>
     <head>
@@ -22,19 +18,28 @@
 
         <%@include file="shared/header.jsp" %>
 
+        <%
+    //The current_user already include in include file="shared/header.jsp" : line 23
+    //User current_user = (User) request.getSession().getAttribute("current_user");
+    CartItemDAO ciDAO = new CartItemDAO();
+    ArrayList<CartItem> cart_items = ciDAO.getByUserIdAndStatus(current_user.getId(), "in_cart");
+   
+        %>
+
         <div class="page-heading">
+
+
+            <% if (cart_items.isEmpty()) { %>
+            <h2 style="margin-bottom: 50px; color: white;">You have no game in the cart! Let's shopping</h2>
+
+            <% } else { %>
+
             <div>
                 <h2 style="margin-bottom: 50px; color: white;">The best cart ever!</h2>
             </div>
             <div style="width: 60%; margin: 0 auto">
                 <form action="cart" method="post">
-
-
-
                     <% 
-                        CartItemDAO ciDAO = new CartItemDAO();
-                        ArrayList<CartItem> cart_items = ciDAO.getByUserIdAndStatus(current_user.getId(), "in_cart");
-                    
                         for (CartItem cart_item : cart_items) {
                     %>
 
@@ -58,12 +63,14 @@
 
                         </div>
 
-
                     </div>
-
-
                 </form>
             </div>
+            <% } %>
+
+
+
+
 
 
             <br><br><br><br><br><br><br><br><br><br>
