@@ -2,15 +2,11 @@ package database;
 
 import java.util.ArrayList;
 import model.User;
+import java.sql.ResultSet;
 
 public class UserDAO extends MyDAO {
 
     public ArrayList<User> getAll() {
-
-        int idz;
-        String namez;
-        String gmailz;
-        String passwordz;
 
         ArrayList<User> userList = new ArrayList<>();
         xSql = "select * from Users";
@@ -18,13 +14,8 @@ public class UserDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                idz = rs.getInt("id");
-                namez = rs.getString("name");
-                gmailz = rs.getString("email");
-                passwordz = rs.getString("password");
-                User user_i = new User(idz, namez, gmailz, passwordz);
-                //System.out.println(user_i);
-                userList.add(user_i);
+
+                userList.add(getUser(rs));
             }
             rs.close();
             ps.close();
@@ -41,13 +32,7 @@ public class UserDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int idz = rs.getInt("id");
-                String namez = rs.getString("name");
-                String gmailz = rs.getString("email");
-                String passwordz = rs.getString("password");
-                User user_i = new User(idz, namez, gmailz, passwordz);
-
-                return user_i;  //return 
+                return getUser(rs);
             }
             rs.close();
             ps.close();
@@ -66,13 +51,7 @@ public class UserDAO extends MyDAO {
             ps.setInt(1, searchId);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int idz = rs.getInt("id");
-                String namez = rs.getString("name");
-                String gmailz = rs.getString("email");
-                String passwordz = rs.getString("password");
-                User user_i = new User(idz, namez, gmailz, passwordz);
-
-                return user_i;  //return 
+                return getUser(rs);
             }
             rs.close();
             ps.close();
@@ -92,13 +71,7 @@ public class UserDAO extends MyDAO {
             ps.setString(2, Lib.MyLib.hashString(password));
             rs = ps.executeQuery();
             while (rs.next()) {
-                int idz = rs.getInt("id");
-                String namez = rs.getString("name");
-                String gmailz = rs.getString("email");
-                String passwordz = rs.getString("password");
-                User user_i = new User(idz, namez, gmailz, passwordz);
-
-                return user_i;  //return 
+                return getUser(rs);
             }
             rs.close();
             ps.close();
@@ -123,4 +96,30 @@ public class UserDAO extends MyDAO {
             e.printStackTrace();
         }
     }
+
+    public void updatePassword(int user_id, String new_pass) {
+        xSql = "update Users set password = ? where id = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            // ps.setInt(1, cart_item.getId());
+            ps.setString(1, new_pass);
+            ps.setInt(2, user_id);
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // HELP FUNCTION
+    private User getUser(ResultSet rs) throws Exception {
+        int idz = rs.getInt("id");
+        String namez = rs.getString("name");
+        String gmailz = rs.getString("email");
+        String passwordz = rs.getString("password");
+        User user = new User(idz, namez, gmailz, passwordz);
+        return user;
+    }
+
 }

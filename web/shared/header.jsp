@@ -28,8 +28,15 @@ User current_user = (User) request.getSession().getAttribute("current_user");
 <header class="header-area">    <!-- header-sticky removed: red background-->
     <div class="container">
         <div class="drop-menu" id="drop-menu">
+            <a href="admin/game/insert">Upload game</a><br/>
+
+            <hr/>
+
+
             <a href="order_history">Order history</a><br/>
+            <a href="change_password">Change password</a><br/>
             <a href="logout">Logout</a><br/>
+
 
         </div>
 

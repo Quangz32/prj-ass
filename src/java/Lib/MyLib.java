@@ -10,7 +10,7 @@ public class MyLib {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hashedBytes = md.digest(password.getBytes());
 
-            // Chuyển đổi byte array thành chuỗi hex
+            // convert byte array -> hex
             StringBuilder sb = new StringBuilder();
             for (byte b : hashedBytes) {
                 sb.append(String.format("%02x", b));

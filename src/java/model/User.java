@@ -73,4 +73,8 @@ public class User {
         return number_of_item;
     }
 
+    public boolean checkPassword(String pass_to_check) {
+        return Lib.MyLib.hashString(pass_to_check).equals(this.password);
+    }
+
 }
