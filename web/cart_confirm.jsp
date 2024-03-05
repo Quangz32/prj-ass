@@ -33,16 +33,16 @@
                             <th class="col-lg-2">Total</th>
                         </tr>
 
-                        
+
                         <c:set var="i" value="1"/>
                         <c:set var="order_total" value="0"/>
-                            
+
                         <c:forEach var="item" items="${cart_items}">
                             <input class="d-none" type="text" name="card_items" value="${item.id}">
                             <tr>
                                 <td class="col-lg-1">${i}</td>
                                 <td class="col-lg-3">
-                                    <img src="${item.getGame().getImagePath()}" alt="alt"/>
+                                    <img src="${item.getGame().getImagePath()}" class="rounded-3"/>
                                 </td>
                                 <td class="col-lg-3">${item.getGame().name}</td>
                                 <td class="col-lg-2">${item.getGame().discountPrice}</td>
@@ -53,22 +53,22 @@
 
                             <c:set var="i" value="${i+1}"/>
                         </c:forEach>
-                            
-                         <tr>
-                                <td class="col-lg-1">#</td>
-                                <td class="col-lg-3">
-                                    
-                                </td>
-                                <td class="col-lg-3"></td>
-                                <td class="col-lg-2"></td>
-                                <td class="col-lg-1">Total: </td>
-                                <td class="col-lg-2">$${order_total }</td>
-                            </tr>   
+
+                        <tr>
+                            <td class="col-lg-1">#</td>
+                            <td class="col-lg-3">
+
+                            </td>
+                            <td class="col-lg-3"></td>
+                            <td class="col-lg-2"></td>
+                            <td class="col-lg-1">Total: </td>
+                            <td class="col-lg-2">$${order_total }</td>
+                        </tr>   
 
                     </table>
-                            
-                            <input type="text" name="order_total" value="${order_total}" class="d-none"> 
-                            <input class="mt-3" type="submit" value="I want to buy them!">
+
+                    <input type="text" name="order_total" value="${order_total}" class="d-none"> 
+                    <input class="mt-3" type="submit" value="I want to buy them!">
 
                 </form>
             </div>

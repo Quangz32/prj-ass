@@ -1,10 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import = "model.*" %>
 <%@page import = "java.util.*" %>
 <%@page import = "database.*" %>
-
-<%
-    Game game = (Game) request.getAttribute("game_to_show");  
-%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +25,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3><%= game.getName() %></h3>
-                        <span class="breadcrumb"><a href="#">Home</a>  >  <a href="#">Shop</a>  > <%= game.getName() %></span>
+                        <h3><c:out value="${game.getName()}"/></h3>
+                        <span class="breadcrumb"><a href="#">Home</a>  >  <a href="#">Shop</a> > <c:out value="${game.getName()}"/></span>
                     </div>
                 </div>
             </div>
@@ -40,41 +37,33 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="left-image">
-                            <!--                                <img src="/Ass1/assets/images/single-game.jpg" alt="">-->
-                            <img src="<%= game.getImagePath() %>" alt="alt"/>
+                            <img src="<c:out value="${game.getImagePath()}"/>" alt="alt"/>
                         </div>
                     </div>
                     <div class="col-lg-6 align-self-center">
-                        <h4> <%= game.getName() %> </h4>
-                        <span class="price"><em>$<%= game.getListedPrice() %></em> $<%= game.getDiscountPrice() %></span>
-                        <p><%= game.getDetail().getIntroduction() %></p>
+                        <h4> <c:out value="${game.getName()}"/> </h4>
+                        <span class="price"><em>$<c:out value="${game.getListedPrice()}"/></em> $<c:out value="${game.getDiscountPrice()}"/></span>
+                        <p><c:out value="${game.getDetail().getIntroduction()}"/></p>
 
                         <form id="qty" action="/Ass1/game/add_to_cart" method="post">
                             <input type="qty" name="quantity" class="form-control" id="1" aria-describedby="quantity" value="1">
-                            <input type="number" name="game_id" value="<%= game.getId() %>" hidden>
+                            <input type="number" name="game_id" value="<c:out value="${game.getId()}"/>" hidden>
                             <button type="submit"><i class="fa fa-shopping-bag"></i> ADD TO CART</button>
                         </form>
 
                         <ul>
-                            <li><span>Game ID:</span><%= game.getId() %></li>
-                            <li><span>Genre:</span> 
-                                <!--                                <a href="#">Action</a>, <a href="#">Team</a>, <a href="#">Single</a>-->
-                                <%
-                                    ArrayList<Category> categories = game.getCategories();
-                                    boolean first = true;
-                                    for (Category category : categories) {
-                                        if (!first) {
-                                %>,<%
-                                    }
-                                    first = false;
-                                %>
-                                <a href="#"><%= category.getName() %></a>
-                                <%
-                                }
-                                %>
-
+                            <li><span>Game ID:</span><c:out value="${game.getId()}"/></li>
+                            <li><span>Genre:</span>
+                                <c:set var="categories" value="${game.getCategories()}"/>
+                                <c:set var="first" value="${true}"/>
+                                <c:forEach var="category" items="${categories}">
+                                    <c:if test="${!first}">
+                                        <c:out value=","/>
+                                    </c:if>
+                                    <c:set var="first" value="${false}"/>
+                                    <c:out value="${category.getName()}"/>
+                                </c:forEach>
                             </li>
-                            <!--                            <li><span>Multi-tags:</span> <a href="#">War</a>, <a href="#">Battle</a>, <a href="#">Royal</a></li>-->
                         </ul>
                     </div>
                     <div class="col-lg-12">
@@ -96,16 +85,29 @@
                                             <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews (3)</button>
+                                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Feedback (<c:out value="${feedbacks.size()}"/>)</button>
                                         </li>
                                     </ul>
                                 </div>              
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                        <p><%= game.getDetail().getDescription() %></p>
+                                        <p><c:out value="${game.getDetail().getDescription()}" /></p>
                                     </div>
                                     <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                                        <p>Coloring book air plant shabby chic, crucifix normcore raclette cred swag artisan activated charcoal. PBR&B fanny pack pok pok gentrify truffaut kitsch helvetica jean shorts edison bulb poutine next level humblebrag la croix adaptogen. <br><br>Hashtag poke literally locavore, beard marfa kogi bruh artisan succulents seitan tonx waistcoat chambray taxidermy. Same cred meggings 3 wolf moon lomo irony cray hell of bitters asymmetrical gluten-free art party raw denim chillwave tousled try-hard succulents street art.</p>
+                                        <c:forEach var="feedback" items="${feedbacks}">
+                                            <div id="feedback"> 
+                                                <label class="d-inline-block"><c:out value="${feedback.getUserName()}"/>:</label>
+                                                <p class="d-inline-block"><c:out value="${feedback.getContent()}"/></p>
+                                                <hr>
+                                            </div>
+                                        </c:forEach>
+
+                                        <form action="/Ass1/feedback" method="post">
+                                            <input type="text" name="feedback_content" class="rounded-3">
+                                            <input class="d-none" name="game_id" value="<c:out value="${game.getId()}"/>">
+                                            <input type="submit" value="post" class="rounded-3">
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>

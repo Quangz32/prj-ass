@@ -12,12 +12,12 @@
 
     <div class="col-lg-1 d-flex justify-content-center align-items-center">
         <input type="checkbox" name="cart-items" value="<%= cart_item.getId() %>" 
-                class="big-checkbox-3">        
+               class="big-checkbox-3">        
     </div>
 
     <div class="col-lg-4">
         <a href="/Ass1/product/<%= game.getId() %>">
-           <img src="<%= game.getImagePath() %>" style="">
+            <img src="<%= game.getImagePath() %>" class="rounded-5">
         </a>
     </div>
 

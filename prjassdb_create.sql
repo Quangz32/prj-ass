@@ -85,36 +85,16 @@ CREATE TABLE OrderItems (
 );
 GO
 
-
-
-/*
-CREATE TABLE Orders (
+CREATE TABLE Feedbacks (
   id INT IDENTITY(1,1) PRIMARY KEY,
   userId INT,
-  [time] DATETIME,
-  FOREIGN KEY (userId) REFERENCES Users(id)
+  gameId INT,
+  content NVARCHAR(1024),
+  FOREIGN KEY (userId) REFERENCES Users(id),
+  FOREIGN KEY (gameId) REFERENCES Games(id)
 );
 GO
 
-CREATE TABLE Order_CartItem (
-  orderId INT,
-  cartItemId INT,
-  FOREIGN KEY (orderId) REFERENCES Orders(id),
-  FOREIGN KEY (cartItemId) REFERENCES CartItems(id),
-  PRIMARY KEY (orderId, cartItemId)
-);
-GO
-*/
-
---This can be named: User_CartItem
---CREATE TABLE Carts (
-  --userId INT,
-  --cartItemId INT,
-  --FOREIGN KEY (userId) REFERENCES Users(id),
-  --FOREIGN KEY (cartItemId) REFERENCES CartItems(id),
-  --PRIMARY KEY (userId, cartItemId),
---);
---GO
 
 -- INSERT DATAAAAAAAAAAAAAA
 INSERT INTO Categories (name) VALUES

@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import database.FeedbackDAO;
 import database.GameDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.Feedback;
 import model.Game;
 
 /**
@@ -21,19 +24,10 @@ import model.Game;
 @WebServlet(name = "ProductController", urlPatterns = {"/product/*"})
 public class ProductController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String path_info = request.getPathInfo().substring(1);
-        //response.getWriter().println(path_info);
         if (path_info != null) {
             int game_id = Integer.parseInt(path_info);
 
@@ -41,52 +35,28 @@ public class ProductController extends HttpServlet {
             Game game_to_show = gamedao.getById(game_id);
 
             if (game_to_show == null) {
-                //request.getRequestDispatcher("/dashboard").forward(request, response);
-                response.sendRedirect("/Ass1/dashboard");
+                request.setAttribute("notification-message", "Game not found!");
+                request.getRequestDispatcher("/dashboard").forward(request, response);
+                //response.sendRedirect("/Ass1/dashboard");
             } else {
-                request.setAttribute("game_to_show", game_to_show);
+                FeedbackDAO fbDAO = new FeedbackDAO();
+                ArrayList<Feedback> feedbacks = fbDAO.getByGameId(game_id);
+
+                request.setAttribute("game", game_to_show);
+                request.setAttribute("feedbacks", feedbacks);
+
+                //response.getWriter().print(feedbacks);
                 request.getRequestDispatcher("/product-details.jsp").forward(request, response);
             }
 
         }
-
-        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

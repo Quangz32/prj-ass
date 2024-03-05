@@ -28,14 +28,14 @@ User current_user = (User) request.getSession().getAttribute("current_user");
 <header class="header-area">    <!-- header-sticky removed: red background-->
     <div class="container">
         <div class="drop-menu" id="drop-menu">
-            <a href="admin/game/insert">Upload game</a><br/>
+            <a href="/Ass1/admin/game/insert">Upload game</a><br/>
 
             <hr/>
 
 
-            <a href="order_history">Order history</a><br/>
-            <a href="change_password">Change password</a><br/>
-            <a href="logout">Logout</a><br/>
+            <a href="/Ass1/order_history">Order history</a><br/>
+            <a href="/Ass1/change_password">Change password</a><br/>
+            <a href="/Ass1/logout">Logout</a><br/>
 
 
         </div>
@@ -187,16 +187,25 @@ User current_user = (User) request.getSession().getAttribute("current_user");
         }, 50);
     }
 
-    <%
-                String notification_message = (String) request.getAttribute("notification-message");
-                if (notification_message != null){ %>
+    <% 
+        String notification_message = (String) request.getAttribute("notification-message");
+        if (notification_message == null) {
+            notification_message = (String) request.getSession().getAttribute("notification-message");
+        }
+        
+        if (notification_message != null){ 
+    %>
 
     let notification_message = document.getElementById("notification-message");
 
     notification_message.innerHTML = "<%= notification_message %>";
 
     showNotification();
-    <% } %>
+
+    <% 
+        } 
+        request.getSession().removeAttribute("notification-message");
+    %>
 
 
 </script>

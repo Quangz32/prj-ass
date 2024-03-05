@@ -41,14 +41,17 @@ public class TestController extends HttpServlet {
         CartItemDAO ciDAO = new CartItemDAO();
         OrderItemDAO oiDAO = new OrderItemDAO();
         OrderDAO oDAO = new OrderDAO();
-        
+        FeedbackDAO fbDAO = new FeedbackDAO();
+
+        Feedback fb = new Feedback(-1, 1, 2, "This game is a SHIT!");
+        //fbDAO.insert(fb);
+
+        out.print(fbDAO.getByGameId(2));
+
         //Order order1 = oDAO.getById(2);
-        
         //oDAO.insert(order1);
-        
         //oiDAO.insert(new OrderItem(1, 4, 2, 10));
         //out.print(oDAO.getByUserId(1));
-
 //        Game game = gameDAO.getById(4);
 //        out.println(game.getDetail());
         //out.println(ciDAO.getByUserIdAndStatus(4, "in_cart"));
