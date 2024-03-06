@@ -29,6 +29,7 @@ public class CartController extends HttpServlet {
         if (request.getSession().getAttribute("current_user") == null) {
             request.getRequestDispatcher("login").forward(request, response);
         } else {
+            //response.getWriter().print("AOWHFIOPAWFHFAIPWH");
             request.getRequestDispatcher("cart.jsp").forward(request, response);
 
         }
@@ -38,7 +39,7 @@ public class CartController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String[] cart_item_ids = request.getParameterValues("cart-items");
-        
+
         User c_user = (User) request.getSession().getAttribute("current_user");
         if (c_user == null) {
             request.getRequestDispatcher("login").forward(request, response);

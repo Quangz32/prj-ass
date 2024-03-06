@@ -19,11 +19,9 @@
         <%@include file="shared/header.jsp" %>
 
         <%
-    //The current_user already include in include file="shared/header.jsp" : line 23
-    //User current_user = (User) request.getSession().getAttribute("current_user");
-    CartItemDAO ciDAO = new CartItemDAO();
-    ArrayList<CartItem> cart_items = ciDAO.getByUserIdAndStatus(current_user.getId(), "in_cart");
-   
+            //The current_user already include in include file="shared/header.jsp" : line 23
+            CartItemDAO ciDAO = new CartItemDAO();
+            ArrayList<CartItem> cart_items = ciDAO.getByUserIdAndStatus(current_user.getId(), "in_cart");
         %>
 
         <div class="page-heading">

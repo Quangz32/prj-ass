@@ -131,46 +131,33 @@
                             <a href="shop.html">View All</a>
                         </div>
                     </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-01.jpg" alt=""></a>
+
+                    <%
+                        Game game_to_show = (Game) request.getAttribute("game"); 
+                        
+                        QueryDAO qDAO = new QueryDAO();
+                        ArrayList<Game> related_games = qDAO.getRelatedGames(game_to_show.getId());
+                        
+                        pageContext.setAttribute("related_games",related_games);
+                    %>
+
+                    <c:forEach var="game" items="${related_games}">
+                        <div class="col-lg col-sm-6 col-xs-12">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="/Ass1/product/<c:out value="${game.getId()}"/>">
+                                        <img height="220px" src="<c:out value="${game.getImagePath()}"/>" >
+                                    </a>
+                                </div>
+
+                                <h4>$<c:out value="${game.getDiscountPrice()}"/></h4>
+
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-03.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-04.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
+
+
                 </div>
             </div>
         </div>

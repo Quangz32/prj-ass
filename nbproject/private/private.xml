@@ -3,18 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/database/FeedbackDAO.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/FeedbackController.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/model/Feedback.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shared/cart_item.jsp</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/cart.jsp</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/TestController.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shared/header.jsp</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shop.jsp</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/Game/AddToCartController.java</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/database/QueryDAO.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/database/OrderDAO.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/cart_confirm.jsp</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/ProductController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/dashboard.jsp</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/Cart/CartController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/product-details.jsp</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/model/Game.java</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/ShopController.java</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shared/game_card.jsp</file>
         </group>
     </open-files>
 </project-private>

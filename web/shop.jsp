@@ -64,7 +64,7 @@
                     </c:if>
 
                     <c:forEach var="game" items="${games}">
-                        <c:if test="${ game.getName().contains(searchKeyword)}">
+                        <c:if test="${ game.getName().toUpperCase().contains(searchKeyword.toUpperCase())}">
                             <%@include file="shared/game_card.jsp" %>
                         </c:if>
                     </c:forEach>

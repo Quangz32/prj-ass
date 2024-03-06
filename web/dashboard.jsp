@@ -1,4 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import = "model.*" %>
+<%@page import = "java.util.*" %>
+<%@page import = "database.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,47 +52,29 @@
         <div class="features">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <a href="#">
-                            <div class="item">
-                                <div class="image">
-                                    <img src="assets/images/featured-01.png" alt="" style="max-width: 44px;">
+                    <%
+                        String sa[] = {"Fast Buying","User Friendly","Fast Refund","Easy2Use"};
+                        pageContext.setAttribute("s", sa);
+                    %>
+
+                    <c:set var="sa" value="${s}" />
+
+                    <c:set var="i" value="1"/>
+                    <c:forEach var="s" items="${sa}">
+                        <div class="col-lg-3 col-md-6">
+                            <a>
+                                <div class="item">
+                                    <div class="image">
+                                        <img src="assets/images/featured-0<c:out value="${i}"/>.png" alt="" style="max-width: 44px;">
+                                    </div>
+                                    <h4><c:out value="${s}"/></h4>
                                 </div>
-                                <h4>Free Storage</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="#">
-                            <div class="item">
-                                <div class="image">
-                                    <img src="assets/images/featured-02.png" alt="" style="max-width: 44px;">
-                                </div>
-                                <h4>User More</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="#">
-                            <div class="item">
-                                <div class="image">
-                                    <img src="assets/images/featured-03.png" alt="" style="max-width: 44px;">
-                                </div>
-                                <h4>Reply Ready</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <a href="#">
-                            <div class="item">
-                                <div class="image">
-                                    <img src="assets/images/featured-04.png" alt="" style="max-width: 44px;">
-                                </div>
-                                <h4>Easy Layout</h4>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                        <c:set var="i" value="${i+1}"/>
+                    </c:forEach>
                 </div>
+
             </div>
         </div>
 
@@ -106,204 +92,129 @@
                             <a href="shop.html">View All</a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/trending-01.jpg" alt=""></a>
-                                <span class="price"><em>$28</em>$20</span>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Action</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/trending-02.jpg" alt=""></a>
-                                <span class="price">$44</span>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Action</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/trending-03.jpg" alt=""></a>
-                                <span class="price"><em>$64</em>$44</span>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Action</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+
+                    <%
+                        QueryDAO qDAO = new QueryDAO();
+                        ArrayList<Game> hot_games = qDAO.getHotGames();
+                        
+                        pageContext.setAttribute("hot_games",hot_games);
+                    %>
+
+                    <c:forEach var="game" items="${hot_games}">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="/Ass1/product/<c:out value="${game.getId()}"/>">
+                                        <img height="250px" src="<c:out value="${game.getImagePath()}"/>" alt="">
+                                    </a>
+                                    <span class="price">
+                                        <em>$<c:out value="${game.getListedPrice()}"/></em>
+                                        $<c:out value="${game.getDiscountPrice()}"/>
+                                    </span>
+                                </div>
+                                <div class="down-content">
+                                    <span class="category"><c:out value="${game.getCategoriesString()}"/></span>
+                                    <h4><c:out value="${game.getName()}"/></h4>
+                                    <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/trending-04.jpg" alt=""></a>
-                                <span class="price">$32</span>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Action</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
+
                 </div>
             </div>
         </div>
 
-        <div class="section most-played">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="section-heading">
-                            <h6>TOP GAMES</h6>
-                            <h2>Most Played</h2>
+        <!--        <div class="section most-played">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="section-heading">
+                                    <h6>TOP GAMES</h6>
+                                    <h2>Most Played</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="main-button">
+                                    <a href="shop.html">View All</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="product-details.html"><img src="assets/images/top-game-01.jpg" alt=""></a>
+                                    </div>
+                                    <div class="down-content">
+                                        <span class="category">Adventure</span>
+                                        <h4>Assasin Creed</h4>
+                                        <a href="product-details.html">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="product-details.html"><img src="assets/images/top-game-02.jpg" alt=""></a>
+                                    </div>
+                                    <div class="down-content">
+                                        <span class="category">Adventure</span>
+                                        <h4>Assasin Creed</h4>
+                                        <a href="product-details.html">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="product-details.html"><img src="assets/images/top-game-03.jpg" alt=""></a>
+                                    </div>
+                                    <div class="down-content">
+                                        <span class="category">Adventure</span>
+                                        <h4>Assasin Creed</h4>
+                                        <a href="product-details.html">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="product-details.html"><img src="assets/images/top-game-04.jpg" alt=""></a>
+                                    </div>
+                                    <div class="down-content">
+                                        <span class="category">Adventure</span>
+                                        <h4>Assasin Creed</h4>
+                                        <a href="product-details.html">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="product-details.html"><img src="assets/images/top-game-05.jpg" alt=""></a>
+                                    </div>
+                                    <div class="down-content">
+                                        <span class="category">Adventure</span>
+                                        <h4>Assasin Creed</h4>
+                                        <a href="product-details.html">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="product-details.html"><img src="assets/images/top-game-06.jpg" alt=""></a>
+                                    </div>
+                                    <div class="down-content">
+                                        <span class="category">Adventure</span>
+                                        <h4>Assasin Creed</h4>
+                                        <a href="product-details.html">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="main-button">
-                            <a href="shop.html">View All</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/top-game-01.jpg" alt=""></a>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Adventure</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/top-game-02.jpg" alt=""></a>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Adventure</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/top-game-03.jpg" alt=""></a>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Adventure</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/top-game-04.jpg" alt=""></a>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Adventure</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/top-game-05.jpg" alt=""></a>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Adventure</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/top-game-06.jpg" alt=""></a>
-                            </div>
-                            <div class="down-content">
-                                <span class="category">Adventure</span>
-                                <h4>Assasin Creed</h4>
-                                <a href="product-details.html">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div>-->
 
-        <div class="section categories">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="section-heading">
-                            <h6>Categories</h6>
-                            <h2>Top Categories</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-01.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-03.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-04.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg col-sm-6 col-xs-12">
-                        <div class="item">
-                            <h4>Action</h4>
-                            <div class="thumb">
-                                <a href="product-details.html"><img src="assets/images/categories-05.jpg" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="section cta">
             <div class="container">

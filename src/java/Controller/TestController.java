@@ -34,7 +34,7 @@ public class TestController extends HttpServlet {
         //response.sendRedirect("dashboard");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
+        
         CategoryDAO categoryDAO = new CategoryDAO();
         GameDAO gameDAO = new GameDAO();
         UserDAO uDAO = new UserDAO();
@@ -42,7 +42,10 @@ public class TestController extends HttpServlet {
         OrderItemDAO oiDAO = new OrderItemDAO();
         OrderDAO oDAO = new OrderDAO();
         FeedbackDAO fbDAO = new FeedbackDAO();
-
+        QueryDAO qDAO = new QueryDAO();
+        
+        out.print(qDAO.getRelatedGames(2));
+        
         Feedback fb = new Feedback(-1, 1, 2, "This game is a SHIT!");
         //fbDAO.insert(fb);
 
