@@ -46,8 +46,7 @@ public class TestController extends HttpServlet {
         Feedback fb = new Feedback(-1, 1, 2, "This game is a SHIT!");
         //fbDAO.insert(fb);
 
-        out.print(fbDAO.getByGameId(2));
-
+        ///out.print(fbDAO.getByGameId(2));
         //Order order1 = oDAO.getById(2);
         //oDAO.insert(order1);
         //oiDAO.insert(new OrderItem(1, 4, 2, 10));

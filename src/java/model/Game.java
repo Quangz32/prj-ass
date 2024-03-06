@@ -83,16 +83,26 @@ public class Game {
         Game_CategoryDAO gcDAO = new Game_CategoryDAO();
         gcDAO.addGameCategory(this.id, category_id);
     }
-    
-    public void addDetail(String introduction, String description){
+
+    public void addDetail(String introduction, String description) {
         GameDetail game_detail = new GameDetail(this.id, introduction, description);
         GameDetailDAO gdDAO = new GameDetailDAO();
         gdDAO.insert(game_detail);
     }
-    
-    public GameDetail getDetail(){
+
+    public GameDetail getDetail() {
         GameDetailDAO gdDAO = new GameDetailDAO();
         return gdDAO.getByGameId(this.id);
+    }
+
+    public String getCategoriesString() {
+        String categories_string = "";
+        ArrayList<Category> categories_of_game = this.getCategories();
+
+        for (Category category : categories_of_game) {
+            categories_string += category.getName() + " ";
+        }
+        return categories_string;
     }
 
 }

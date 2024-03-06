@@ -5,6 +5,8 @@
 package Controller.Game;
 
 import database.CartItemDAO;
+import database.CategoryDAO;
+import database.GameDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,7 +14,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import model.CartItem;
+import model.Category;
+import model.Game;
 import model.User;
 
 /**
@@ -33,16 +38,14 @@ public class AddToCartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+
         User current_user = (User) request.getSession().getAttribute("current_user");
-        //if dont Login yet
+        //IF NOT LOGGED IN
         if (current_user == null) {
             request.getRequestDispatcher("/login").forward(request, response);
-            //response.sendRedirect("/login");
             return;
         }
-
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
         String game_id_String = request.getParameter("game_id");
         String quantity_String = request.getParameter("quantity");
@@ -53,18 +56,18 @@ public class AddToCartController extends HttpServlet {
         CartItem cart_item = ciDAO.getByUserIdAndGameIdAndStatus(current_user.getId(), game_id, "in_cart");
 
         if (cart_item == null) {
-            //out.println("cartitrem is null");
             cart_item = new CartItem(-1, current_user.getId(), game_id, quantity, "in_cart");
             ciDAO.insert(cart_item);
         } else {
             int quantity_new = cart_item.getQuantity() + quantity;
-            //cart_item.setQuantity(quantity_new);
-            out.println(cart_item);
             ciDAO.updateQuantity(cart_item.getId(), quantity_new);
         }
 
-        //response.sendRedirect("/dashboard");
-        request.getRequestDispatcher("/shop").forward(request, response);
+        //GO BACK TO SHOP PAGE
+        request.getSession().setAttribute("notification-message", "Your game has been in the cart!");
+        response.sendRedirect("/Ass1/shop");
+
+        //request.getRequestDispatcher("/shop").forward(request, response);
     }
 
     @Override

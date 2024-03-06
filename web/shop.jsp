@@ -1,7 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import = "model.*" %>
 <%@page import = "java.util.*" %>
 <%@page import = "database.*" %>
 
+<%
+    CategoryDAO cateDAO = new CategoryDAO();
+    ArrayList<Category> categories = cateDAO.getAll();
+
+    GameDAO gameDAO = new GameDAO();
+    ArrayList<Game> games = gameDAO.getAll();
+    
+    pageContext.setAttribute("categories", categories);
+    pageContext.setAttribute("games", games);
+    
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,47 +51,36 @@
                         <a class="is_active" href="#!" data-filter="*">Show All</a>
                     </li>
 
-                    
-                    <%
-                        //Create sorting
-                        CategoryDAO cateDAO = new CategoryDAO();
-                        ArrayList<Category> categories = cateDAO.getAll();
-                        
-                    for (Category category : categories){
-                    %>
+                    <c:forEach var="category" items="${categories}">
                         <li>
-                            <a href="#!" data-filter=".<%= category.getName() %>"><%= category.getName() %></a>
+                            <a href="#!" data-filter=".<c:out value="${category.getName()}" />"><c:out value="${category.getName()}" /></a>
                         </li>
+                    </c:forEach>
 
-                    <% } %>
                 </ul>
                 <div class="row trending-box">
-                    <%
-                        GameDAO gameDAO = new GameDAO();
-                        
-                        ArrayList<Game> gameList = new ArrayList<>();
-                        gameList = gameDAO.getAll();
-                        
-                        for (Game game : gameList){
-                    %>   
+                    <c:if test="${ empty searchKeyword}">
+                        <c:set var="searchKeyword" value=""/>
+                    </c:if>
 
-                    <%@include file="shared/game_card.jsp" %>
+                    <c:forEach var="game" items="${games}">
+                        <c:if test="${ game.getName().contains(searchKeyword)}">
+                            <%@include file="shared/game_card.jsp" %>
+                        </c:if>
+                    </c:forEach>
+                </div>
 
-                    <%
-                        }
-                    %>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="pagination">
-                            <li><a href="#"> &lt; </a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a class="is_active" href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"> &gt; </a></li>
-                        </ul>
-                    </div>
-                </div>
+                <!--                <div class="row">
+                                    <div class="col-lg-12">
+                                        <ul class="pagination">
+                                            <li><a href="#"> &lt; </a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a class="is_active" href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#"> &gt; </a></li>
+                                        </ul>
+                                    </div>
+                                </div>-->
             </div>
         </div>
 

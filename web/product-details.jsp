@@ -45,7 +45,7 @@
                         <span class="price"><em>$<c:out value="${game.getListedPrice()}"/></em> $<c:out value="${game.getDiscountPrice()}"/></span>
                         <p><c:out value="${game.getDetail().getIntroduction()}"/></p>
 
-                        <form id="qty" action="/Ass1/game/add_to_cart" method="post">
+                        <form action="/Ass1/game/add_to_cart" method="post">
                             <input type="qty" name="quantity" class="form-control" id="1" aria-describedby="quantity" value="1">
                             <input type="number" name="game_id" value="<c:out value="${game.getId()}"/>" hidden>
                             <button type="submit"><i class="fa fa-shopping-bag"></i> ADD TO CART</button>

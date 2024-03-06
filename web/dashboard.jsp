@@ -18,11 +18,6 @@
 
         <%@include file="shared/header.jsp" %>
 
-
-
-        
-
-
         <div class="main-banner">
             <div class="container">
                 <div class="row">
@@ -32,7 +27,7 @@
                             <h2 style="font-size: 40px">BEST GAMING SITE EVER!</h2>
                             <p>Discover gaming excellence at Quangz.fun! With a vast collection of exciting titles, from the latest releases to beloved classics, we're the ultimate destination for gamers. Join us now and embark on an unforgettable gaming journey!</p>
                             <div class="search-input">
-                                <form id="search" action="#">
+                                <form id="search" action="/Ass1/shop">
                                     <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
                                     <button role="button">Search Now</button>
                                 </form>

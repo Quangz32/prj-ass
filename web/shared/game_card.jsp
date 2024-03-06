@@ -1,26 +1,17 @@
-<%
-    //Get categories of a game: String("A B C")
-    String categories_string = "";
-    ArrayList<Category> categories_of_game = game.getCategories();
-    
-    for (Category category : categories_of_game){
-        categories_string += category.getName() + " ";
-    }
-%>
 
-<div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items <%=categories_string%>">
-    <div class="item">
-        <div class="thumb">
-            <span style="display: none"> <%= game.getId() %></span>
-            <a href="/Ass1/product/<%= game.getId() %>">    
-                <img src="<%= game.getImagePath() %>" style="height: 220px ">
-            </a>
-            <span class="price"><em>$<%= game.getListedPrice()%></em>$<%= game.getDiscountPrice()%></span>
-        </div>
-        <div class="down-content">
-            <span class="category">Action</span>
-            <h4><%= game.getName() %></h4>
-            <a href="product/<%= game.getId() %>"><i class="fa fa-shopping-bag"></i></a>
-        </div>
+<div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items <c:out value="${game.getCategoriesString()}"/> ">
+<div class="item">
+    <div class="thumb">
+        <span style="display: none"> <c:out value="${game.getId()}"/></span>
+        <a href="/Ass1/product/<c:out value="${game.getId()}"/>">    
+        <img src="<c:out value="${game.getImagePath()}"/>" style="height: 220px ">
+        </a>
+        <span class="price"><em>$<c:out value="${game.getListedPrice()}"/></em>$<c:out value="${game.getDiscountPrice()}"/></span>
     </div>
+    <div class="down-content">
+        <span class="category">Action</span>
+        <h4><c:out value="${game.getName()}"/></h4>
+        <a href="product/<c:out value="${game.getId()}"/>"><i class="fa fa-shopping-bag"></i></a>
+    </div>
+</div>
 </div>
