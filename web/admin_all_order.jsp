@@ -8,10 +8,11 @@
 
 <html>
     <head>
-        <title>Quangz | Order History</title>
+        <title>Quangz | All Order</title>
 
         <%@include file="shared/stylesheet.jsp" %>
     </head>
+    
     <body>
         <%@include file="shared/preload.jsp" %>
 
@@ -19,7 +20,7 @@
 
         <div class="page-heading ">
             <div>
-                <h2 style="margin-bottom: 50px; color: white;">Order history</h2>
+                <h2 style="margin-bottom: 50px; color: white;">Below are what you have bought!</h2>
             </div>
             <div style="width: 60%; margin: 0 auto" class="">
                 <c:forEach var="order" items="${orders}">

@@ -47,7 +47,9 @@ public class LoginController extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             request.getSession().setAttribute("current_user", user);
-            request.getRequestDispatcher("dashboard").forward(request, response);
+            request.getSession().setAttribute("notification-message", "Login success");
+            response.sendRedirect("/Ass1/dashboard");
+            //request.getRequestDispatcher("dashboard").forward(request, response);
         }
 
     }

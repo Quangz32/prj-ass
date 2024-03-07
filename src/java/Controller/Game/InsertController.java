@@ -46,7 +46,8 @@ public class InsertController extends HttpServlet {
         //Add GameDetail
         AddGameDetail(request);
 
-        request.getRequestDispatcher("/shop").forward(request, response);
+        request.getSession().setAttribute("notification-message","Game uploaded");
+        response.sendRedirect("/Ass1/shop");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
