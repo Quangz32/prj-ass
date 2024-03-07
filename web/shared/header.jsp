@@ -41,6 +41,8 @@
                 <div id="admin-menu">
                     <a href="/Ass1/admin/game/insert">Upload game</a><br/>
                     <a href="/Ass1/admin/all_order">All order</a><br/>
+                    <a href="/Ass1/admin/report">Report</a><br/>
+                    
                     <hr/>
                 </div>
             </c:if>

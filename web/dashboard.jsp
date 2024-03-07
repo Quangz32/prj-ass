@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="main-button">
-                            <a href="shop.html">View All</a>
+                            <a href="/Ass1/shop">View All</a>
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@
                                 <div class="down-content">
                                     <span class="category"><c:out value="${game.getCategoriesString()}"/></span>
                                     <h4><c:out value="${game.getName()}"/></h4>
-                                    <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+                                    <a href="/Ass1/product/<c:out value="${game.getId()}"/>"><i class="fa fa-shopping-bag"></i></a>
                                 </div>
                             </div>
                         </div>
