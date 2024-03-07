@@ -43,8 +43,10 @@ public class TestController extends HttpServlet {
         OrderDAO oDAO = new OrderDAO();
         FeedbackDAO fbDAO = new FeedbackDAO();
         QueryDAO qDAO = new QueryDAO();
+        RoleDAO rDAO = new RoleDAO();
         
-        out.print(qDAO.getRelatedGames(2));
+        
+        out.print(rDAO.getRole(10));
         
         Feedback fb = new Feedback(-1, 1, 2, "This game is a SHIT!");
         //fbDAO.insert(fb);

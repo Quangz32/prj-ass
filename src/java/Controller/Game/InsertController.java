@@ -1,6 +1,7 @@
 package Controller.Game;
 
 import database.GameDAO;
+import database.RoleDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import jakarta.servlet.annotation.MultipartConfig;
 import model.Game;
+import model.User;
 
 @WebServlet("/admin/game/insert")
 @MultipartConfig(
@@ -49,6 +51,24 @@ public class InsertController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        User c_user = (User) request.getSession().getAttribute("current_user");
+        //NOT A USER
+        if (c_user == null) {
+            request.getSession().setAttribute("notification-message", "You need to login first");
+            response.sendRedirect("/Ass1/login");
+            return;
+        }
+
+        //IF NOT ADMIN
+        RoleDAO rDAO = new RoleDAO();
+        String user_role = rDAO.getRole(c_user.getId());
+        if (!user_role.equals("admin")) {
+            request.getSession().setAttribute("notification-message", "You have no permission");
+            response.sendRedirect("/Ass1/dashboard");
+            return;
+        }
+
+        //IF ADMIN
         request.getRequestDispatcher("/form_upload_game.jsp").forward(request, response);
     }
 

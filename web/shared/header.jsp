@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- ***** Header Area Start ***** -->
 <%@page import = "model.*" %>
 <%@page import = "java.util.*" %>
@@ -19,8 +20,15 @@
     }
     
     //Login or not
-User current_user = (User) request.getSession().getAttribute("current_user");
+    User current_user = (User) request.getSession().getAttribute("current_user");
     
+    if (current_user != null){
+        RoleDAO rDAO = new RoleDAO();
+        String user_role = rDAO.getRole(current_user.getId());
+        boolean is_admin = user_role.equals("admin");
+
+        pageContext.setAttribute("is_admin", is_admin);
+    }
 %>
 
 
@@ -28,16 +36,17 @@ User current_user = (User) request.getSession().getAttribute("current_user");
 <header class="header-area">    <!-- header-sticky removed: red background-->
     <div class="container">
         <div class="drop-menu" id="drop-menu">
-            <a href="/Ass1/admin/game/insert">Upload game</a><br/>
 
-            <hr/>
-
+            <c:if test="${ is_admin }">
+                <div id="admin-menu">
+                    <a href="/Ass1/admin/game/insert">Upload game</a><br/>
+                    <hr/>
+                </div>
+            </c:if>
 
             <a href="/Ass1/order_history">Order history</a><br/>
             <a href="/Ass1/change_password">Change password</a><br/>
             <a href="/Ass1/logout">Logout</a><br/>
-
-
         </div>
 
         <div id="notification" class="notification">

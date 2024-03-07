@@ -6,15 +6,14 @@
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/cart.jsp</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/TestController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shop.jsp</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/Game/AddToCartController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/database/QueryDAO.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/database/OrderDAO.java</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/ProductController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/dashboard.jsp</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/Cart/CartController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/product-details.jsp</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/model/Game.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/ShopController.java</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shared/game_card.jsp</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/order_history.jsp</file>
         </group>
     </open-files>
 </project-private>

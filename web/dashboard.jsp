@@ -229,7 +229,7 @@
                                     </div>
                                     <p>Lorem ipsum dolor consectetur adipiscing, sed do eiusmod tempor incididunt.</p>
                                     <div class="main-button">
-                                        <a href="shop.html">Shop Now</a>
+                                        <a href="/Ass1/shop">Shop Now</a>
                                     </div>
                                 </div>
                             </div>

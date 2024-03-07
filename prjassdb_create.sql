@@ -96,6 +96,13 @@ CREATE TABLE Feedbacks (
 );
 GO
 
+CREATE TABLE Roles(
+	userId INT PRIMARY KEY,
+	[role] NVARCHAR(32),	--'admin' / 'user'
+	FOREIGN KEY (userId) REFERENCES Users(id)
+);
+GO
+
 
 -- INSERT DATAAAAAAAAAAAAAA
 
@@ -112,6 +119,20 @@ VALUES (N'Vũ Hồng Quang', 'quang@gmail.com', 'ca978112ca1bbdcafac231b39a23dc4
        (N'Nguyễn Văn Fight', 'fight@gmail.com', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb'),
        (N'Nguyễn Văn Gà', 'ga@gmail.com', 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb');
 GO
+
+INSERT INTO Roles (userId, [role]) VALUES
+	(1,'admin'),
+	(2,'user'),
+	(3,'user'),
+	(4,'user'),
+	(5,'user'),
+	(6,'user'),
+	(7,'user'),
+	(8,'user'),
+	(9,'user'),
+	(10,'user');
+GO
+
 INSERT INTO Categories (name) VALUES
   ('Action'),
   ('Adventure'),
@@ -166,13 +187,13 @@ INSERT INTO GameDetails
 VALUES	(1, 'Brawlhalla is a free 2D platform fighting game that supports up to 8 local or online players with full cross-play for PC, PS5, PS4, Xbox Series X|S, Xbox One, Nintendo Switch, iOS and Android! History''s greatest warriors brawl to prove who''s the best in an epic test of strength and skill.', 'Brawlhalla is a free-to-play platform fighting game1234developed by Blue Mammoth Games. It was originally released for macOS, PlayStation 4 and Windows in 2017, with ports for Nintendo Switch, Xbox One, Android and iOS released later2. The game supports up to 8 local or online players with full cross-play for PC, PS5, PS4, Xbox Series X|S, Xbox One, Nintendo Switch, iOS and Android1. Players choose from a list of 50+ fighters called Legends and duke it out on various platforms (stages)'),
 		(2, 'Dota is the undisputed granddaddy of all multiplayer online battle arena (MOBA) games, having started the genre itself as a mod for Warcraft III in the early 2000�s. The game has greatly evolved since then to become what is now Dota 2, though it remains far and away the most in-depth and complex of all the MOBAs.', 'Dota 2 is a multiplayer online battle arena (MOBA) video game by Valve1234. It is a sequel to Defense of the Ancients (DotA), a community-created mod for Blizzard Entertainment''s Warcraft III: Reign of Chaos1. In Dota 2, players team up in two sets of five, each controlling one of many Heroes to take out the enemy base23. The game was released in July 20134.'),
 		(3, 'Tower of Fantasy is a free-to-play open world action role-playing game developed by Hotta Studio, a subsidiary of Perfect World. The game is set in the far future on the extraterrestrial planet "Aida"�','Tower of Fantasy is a 3D "shared world" action role-playing game1. It is an open-world game made in the style of Genshin Impact2. The game features a high degree of freedom in world exploration, a scrappy sci-fi art style, interactive puzzle elements, and fast combat feel3. The player controls a customizable character avatar who interacts with non-player characters and other entities and collects items as they travel around in the open virtual world1.'),
-		(4, 'Random text for Game 4', 'Long random text for Game 4'),
-		(5, 'Random text for Game 5', 'Long random text for Game 5'),
-		(6, 'Random text for Game 6', 'Long random text for Game 6'),
-		(7, 'Random text for Game 7', 'Long random text for Game 7'),
-		(8, 'Random text for Game 8', 'Long random text for Game 8'),
-		(9, 'Random text for Game 9', 'Long random text for Game 9'),
-		(10, 'Random text for Game 10', 'Long random text for Game 10'),
-		(11, 'Random text for Game 11', 'Long random text for Game 11');
+		(4, 'Random introduction for Game 4', 'Long random description for Game 4'),
+		(5, 'Random introduction for Game 5', 'Long random description for Game 5'),
+		(6, 'Random introduction for Game 6', 'Long random description for Game 6'),
+		(7, 'Random introduction for Game 7', 'Long random description for Game 7'),
+		(8, 'Random introduction for Game 8', 'Long random description for Game 8'),
+		(9, 'Random introduction for Game 9', 'Long random description for Game 9'),
+		(10, 'Random introduction for Game 10', 'Long random description for Game 10'),
+		(11, 'Random introduction for Game 11', 'Long random description for Game 11');
 
 GO
