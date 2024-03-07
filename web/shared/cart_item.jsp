@@ -44,7 +44,8 @@
 
         <span style="font-size: 1.2rem; color: yellow">
             Quantity: <%= cart_item.getQuantity() %>
-        </span>
+        </span><br><br>
+
 
     </div>
 

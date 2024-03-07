@@ -32,8 +32,12 @@
 
             <% } else { %>
 
-            <div>
-                <h2 style="margin-bottom: 50px; color: white;">The best cart ever!</h2>
+            <div class="mb-5">
+                <h2 class="text-white">The best cart ever!</h2>
+                <form action="/Ass1/delete_cart" method="post" onsubmit="return confirmDelete()">
+                    <input type="text" value="<%= current_user.getId() %>" hidden>
+                    <input type="submit" value="Delete this cart">
+                </form>
             </div>
             <div style="width: 60%; margin: 0 auto">
                 <form action="cart" method="post">
@@ -122,6 +126,11 @@
                 showTotal(checkbox, gameId);
             });
         });
+
+        //DELETE CART
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this cart?");
+        }
 
 
     </script>

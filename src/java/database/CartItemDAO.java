@@ -155,6 +155,19 @@ public class CartItemDAO extends MyDAO {
         }
     }
 
+    public void delete(int cart_item_id) {
+        xSql = "delete from CartItems where id = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, cart_item_id);
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateQuantity(int card_item_id, int new_quantity) {
         xSql = "update CartItems set quantity = ? where id = ?";
         try {

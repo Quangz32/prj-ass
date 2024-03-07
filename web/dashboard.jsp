@@ -40,9 +40,9 @@
                     </div>
                     <div class="col-lg-4 offset-lg-2">
                         <div class="right-image">
-                            <img src="/Ass1/assets/images/banner-image.jpg" alt="">
-                            <span class="price">$22</span>
-                            <span class="offer">-40%</span>
+                            <img src="/Ass1/assets/images/quangz.JPG" alt="Quangz handsome">
+                            <!--                            <span class="price">$22</span>
+                                                        <span class="offer">-40%</span>-->
                         </div>
                     </div>
                 </div>

@@ -34,6 +34,9 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        request.getSession().setAttribute("notification-message", "Somthing went wrong!");
+        response.sendRedirect("/Ass1/dashboard");
+
     }
 
     @Override
@@ -41,6 +44,15 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        User c_user = (User) request.getSession().getAttribute("current_user");
+        //NOT LOGGED IN
+        if (c_user == null) {
+            request.getSession().setAttribute("notification-message", "You need to login first");
+            response.sendRedirect("/Ass1/login");
+            return;
+        }
+
+        //ELSE
         String[] cart_item_ids_s = request.getParameterValues("card_items");
 
         CartItemDAO ciDAO = new CartItemDAO();
@@ -65,12 +77,12 @@ public class OrderController extends HttpServlet {
 
             OrderItem order_item = new OrderItem(-1, new_order.getId(), cart_item.getId(), game.getDiscountPrice());
             oiDAO.insert(order_item);
-            //SEND CODE GAME TO EMAIL: (later) 
 
+            //SEND CODE GAME TO EMAIL: (later) 
         }
 
-        request.setAttribute("notification-message", "Order success. Key will be sent to your email");
-        request.getRequestDispatcher("dashboard").forward(request, response);
+        request.getSession().setAttribute("notification-message", "Order success. Key will be sent to your email");
+        response.sendRedirect("/Ass1/dashboard");
 
     }
 
