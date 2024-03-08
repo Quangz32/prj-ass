@@ -5,8 +5,8 @@
         <group>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/shared/header.jsp</file>
             <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/database/QueryDAO.java</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/cart_confirm.jsp</file>
-            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/ReportServlet.java</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/src/java/Controller/Cart/ReportServlet.java</file>
+            <file>file:/C:/Users/quang/OneDrive/Documents/NetBeansProjects/Ass1/web/admin_report.jsp</file>
         </group>
     </open-files>
 </project-private>
