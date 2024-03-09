@@ -66,4 +66,17 @@ public class Game_CategoryDAO extends MyDAO {
         }
         return (games);
     }
+
+    public void deleteAllCategories(int game_id) {
+        xSql = "delete from game_category where gameId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, game_id);
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

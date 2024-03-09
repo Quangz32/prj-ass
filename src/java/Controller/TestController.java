@@ -34,7 +34,7 @@ public class TestController extends HttpServlet {
         //response.sendRedirect("dashboard");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         CategoryDAO categoryDAO = new CategoryDAO();
         GameDAO gameDAO = new GameDAO();
         UserDAO uDAO = new UserDAO();
@@ -44,12 +44,11 @@ public class TestController extends HttpServlet {
         FeedbackDAO fbDAO = new FeedbackDAO();
         QueryDAO qDAO = new QueryDAO();
         RoleDAO rDAO = new RoleDAO();
-        
-        gameDAO.delete(11);
-        out.print(gameDAO.getDeletedGames());
-        
-        //fbDAO.insert(fb);
 
+        gameDAO.Update(2, new Game(1, "helo", 12, 12, "fuck"));
+        out.print(gameDAO.getAll());
+
+        //fbDAO.insert(fb);
         ///out.print(fbDAO.getByGameId(2));
         //Order order1 = oDAO.getById(2);
         //oDAO.insert(order1);

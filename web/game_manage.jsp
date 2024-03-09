@@ -44,7 +44,7 @@
                             <td class="col-lg-2">${game.getDiscountPrice()}</td>
                             <td class="col-lg-2">
                                 <a href="/Ass1/product/${game.getId()}" style="color: yellow">View</a>
-                                <a>Edit</a>
+                                <a href="/Ass1/game/edit?gameid=${game.getId()}" style="color: yellow">Edit</a>
                                 <a href="/Ass1/game/delete?gameid=${game.getId()}" style="color: yellow"
                                    onclick="return confirm('Are you sure you want to delete this game?');">
                                     Delete

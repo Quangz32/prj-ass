@@ -4,6 +4,7 @@ import java.util.*;
 import model.GameDetail;
 
 public class GameDetailDAO extends MyDAO {
+
     public ArrayList<GameDetail> getAll() {
 
         int idz;
@@ -32,7 +33,7 @@ public class GameDetailDAO extends MyDAO {
     }
 
     public GameDetail getByGameId(int gameId) {
-        
+
         xSql = "select * from GameDetails where gameId = ?";
         try {
             ps = con.prepareStatement(xSql);
@@ -42,7 +43,7 @@ public class GameDetailDAO extends MyDAO {
                 int idz = rs.getInt("gameId");
                 String introz = rs.getString("introduction");
                 String descriptz = rs.getString("description");
-                
+
                 GameDetail game_detail = new GameDetail(idz, introz, descriptz);
 
                 return game_detail;    //If exist, return
@@ -64,6 +65,21 @@ public class GameDetailDAO extends MyDAO {
             ps.setInt(1, game_detail.getGameId());
             ps.setString(2, game_detail.getIntroduction());
             ps.setString(3, game_detail.getDescription());
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(int gameid, String new_intro, String new_desc) {
+        xSql = "UPDATE GameDetails set introduction = ?, description = ? where gameId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, new_intro);
+            ps.setString(2, new_desc);
+            ps.setInt(3, gameid);
 
             ps.executeUpdate();
             ps.close();

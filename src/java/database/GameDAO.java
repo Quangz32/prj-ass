@@ -137,4 +137,42 @@ public class GameDAO extends MyDAO {
         return (deleted_games);
     }
 
+    public void Update(int gameid, Game game_info) {
+//        xSql = "UPDATE Games\n"
+//                + "SET name = ?, \n"
+//                + "listedPrice=?, \n"
+//                + "discountPrice = ?, \n"
+//                + "imageURL = ?\n"
+//                + "WHERE id = ?;";
+
+        String s1 = "UPDATE Games\n"
+                + "SET name = ?, \n"
+                + "listedPrice=?,\n";
+        String s3 = "discountPrice = ?\n"
+                + "WHERE id = ?;";
+
+        String s2 = ""; //imageURL = '',
+
+        if (!game_info.getImageURL().isEmpty()) {
+            s2 = "imageURL = '" + game_info.getImageURL() + "',\n";;
+            //ps.setString(4, game_info.getImageURL());
+        }
+
+        xSql = s1 + s2 + s3;
+
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, game_info.getName());
+            ps.setInt(2, game_info.getListedPrice());
+            ps.setInt(3, game_info.getDiscountPrice());
+            ps.setInt(4, gameid);
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

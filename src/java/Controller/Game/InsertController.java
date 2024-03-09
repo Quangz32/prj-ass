@@ -73,7 +73,7 @@ public class InsertController extends HttpServlet {
         request.getRequestDispatcher("/form_upload_game.jsp").forward(request, response);
     }
 
-    private void AddGameDetail(HttpServletRequest request) throws IOException, ServletException {
+    void AddGameDetail(HttpServletRequest request) throws IOException, ServletException {
         String introz = request.getParameter("introduction");
         String descriptz = request.getParameter("description");
 
@@ -83,7 +83,7 @@ public class InsertController extends HttpServlet {
         newest_game.addDetail(introz, descriptz);
     }
 
-    private void AddCategories(HttpServletRequest request) throws IOException, ServletException {
+    void AddCategories(HttpServletRequest request) throws IOException, ServletException {
         GameDAO gDAO = new GameDAO();
         Game newest_game = gDAO.getLast();
 
@@ -96,7 +96,7 @@ public class InsertController extends HttpServlet {
         }
     }
 
-    private String saveUploadedFile(HttpServletRequest request) throws IOException, ServletException {
+    String saveUploadedFile(HttpServletRequest request) throws IOException, ServletException {
         String applicationPath = request.getServletContext().getRealPath("");
         String uploadPath = applicationPath + File.separator + UPLOAD_DIR;
 
@@ -119,7 +119,7 @@ public class InsertController extends HttpServlet {
         }
     }
 
-    private String getUniqueFileName(Part part) {
+    String getUniqueFileName(Part part) {
         String submittedFileName = part.getSubmittedFileName();
         String fileExtension = submittedFileName.substring(submittedFileName.lastIndexOf('.'));
         String newFileName = System.currentTimeMillis() + fileExtension;
