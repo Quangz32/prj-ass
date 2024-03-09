@@ -103,6 +103,11 @@ CREATE TABLE Roles(
 );
 GO
 
+CREATE TABLE DeletedGames (
+  gameId INT PRIMARY KEY,
+  FOREIGN KEY (gameId) REFERENCES Games(id)
+);
+GO
 
 -- INSERT DATAAAAAAAAAAAAAA
 INSERT INTO [dbo].[Games] ([name], [listedPrice], [discountPrice], [imageURL]) 

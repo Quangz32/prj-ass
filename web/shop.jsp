@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Our Shop</h3>
-                        <span class="breadcrumb"><a href="#">Home</a> > Our Shop</span>
+                        <span class="breadcrumb"><a href="/Ass1/dashboard">Home</a> > Our Shop</span>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             <div class="container">
                 <ul class="trending-filter">
                     <li>
-                        <a class="is_active" href="#!" data-filter="*">Show All</a>
+                        <a class="is_active" href="/Ass1/shop" data-filter="*">Show All</a>
                     </li>
 
                     <c:forEach var="category" items="${categories}">

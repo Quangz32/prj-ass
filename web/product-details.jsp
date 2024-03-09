@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h3><c:out value="${game.getName()}"/></h3>
-                        <span class="breadcrumb"><a href="#">Home</a>  >  <a href="#">Shop</a> > <c:out value="${game.getName()}"/></span>
+                        <span class="breadcrumb"><a href="/Ass1/dashboard">Home</a>  >  <a href="#">Shop</a> > <c:out value="${game.getName()}"/></span>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="main-button">
-                            <a href="shop.html">View All</a>
+                            <a href="/Ass1/shop">View All</a>
                         </div>
                     </div>
 

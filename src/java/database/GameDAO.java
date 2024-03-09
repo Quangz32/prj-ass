@@ -2,30 +2,32 @@ package database;
 
 import java.util.*;
 import model.Game;
+import java.sql.*;
 
 public class GameDAO extends MyDAO {
 
+    private Game getGameInRS(ResultSet rs) throws Exception {
+        int idz = rs.getInt("id");
+        String namez = rs.getString("name");
+        int listedPricez = rs.getInt("listedPrice");
+        int discountPricez = rs.getInt("discountPrice");
+        String imageURLz = rs.getString("imageURL");
+
+        Game game_i = new Game(idz, namez, listedPricez, discountPricez, imageURLz);
+
+        return game_i;
+    }
+
     public ArrayList<Game> getAll() {
-
-        int idz;
-        String namez;
-        int listedPricez;
-        int discountPricez;
-        String imageURLz;
-
         ArrayList<Game> gameList = new ArrayList<>();
-        xSql = "select * from Games";
+        xSql = "select * from Games where id not in (\n"
+                + "	select * from DeletedGames\n"
+                + ")";
         try {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                idz = rs.getInt("id");
-                namez = rs.getString("name");
-                listedPricez = rs.getInt("listedPrice");
-                discountPricez = rs.getInt("discountPrice");
-                imageURLz = rs.getString("imageURL");
-                Game game_i = new Game(idz, namez, listedPricez, discountPricez, imageURLz);
-                //System.out.println(game_i);
+                Game game_i = this.getGameInRS(rs);
                 gameList.add(game_i);
             }
             rs.close();
@@ -49,12 +51,7 @@ public class GameDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                idz = rs.getInt("id");
-                namez = rs.getString("name");
-                listedPricez = rs.getInt("listedPrice");
-                discountPricez = rs.getInt("discountPrice");
-                imageURLz = rs.getString("imageURL");
-                Game game_i = new Game(idz, namez, listedPricez, discountPricez, imageURLz);
+                Game game_i = this.getGameInRS(rs);
 
                 return game_i;  //return 
             }
@@ -81,13 +78,7 @@ public class GameDAO extends MyDAO {
             ps.setInt(1, searchId);
             rs = ps.executeQuery();
             while (rs.next()) {
-                idz = rs.getInt("id");
-                namez = rs.getString("name");
-                listedPricez = rs.getInt("listedPrice");
-                discountPricez = rs.getInt("discountPrice");
-                imageURLz = rs.getString("imageURL");
-                Game game_i = new Game(idz, namez, listedPricez, discountPricez, imageURLz);
-
+                Game game_i = this.getGameInRS(rs);
                 return game_i;  //return 
             }
             rs.close();
@@ -114,4 +105,36 @@ public class GameDAO extends MyDAO {
             e.printStackTrace();
         }
     }
+
+    public void delete(int game_id) {
+        xSql = "insert into DeletedGames values (?)";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, game_id);
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Game> getDeletedGames() {
+        ArrayList<Game> deleted_games = new ArrayList<>();
+        xSql = "select * from DeletedGames";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int game_id = rs.getInt("gameId");
+                deleted_games.add(this.getById(game_id));
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (deleted_games);
+    }
+
 }

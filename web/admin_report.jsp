@@ -32,16 +32,16 @@
                         <option value="all">All</option>
 
                         <c:forEach var="category" items="${categories}">
-                            <option value="<c:out value="${category.getId()}"/>"><c:out value="${category.getName()}"/></option>
+                            <option ${param.category==category.id?"selected":""} value="<c:out value="${category.getId()}"/>"><c:out value="${category.getName()}"/></option>
                         </c:forEach>
 
                     </select>
 
                     <label>Time</label>
                     <select name="time">
-                        <option value="all">All</option>
-                        <option value="lastweek">Last week</option>
-                        <option value="lastmonth">Last month</option>
+                        <option ${param.time== "all" ?"selected":""} value="all">All</option>
+                        <option ${param.time== "lastweek" ? "selected":""} value="lastweek">Last week</option>
+                        <option ${param.time== "lastmonth" ?"selected":""} value="lastmonth">Last month</option>
                     </select>
 
                     <input type="submit" value="Get Report">

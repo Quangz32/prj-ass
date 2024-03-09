@@ -45,10 +45,9 @@ public class TestController extends HttpServlet {
         QueryDAO qDAO = new QueryDAO();
         RoleDAO rDAO = new RoleDAO();
         
+        gameDAO.delete(11);
+        out.print(gameDAO.getDeletedGames());
         
-        out.print(rDAO.getRole(10));
-        
-        Feedback fb = new Feedback(-1, 1, 2, "This game is a SHIT!");
         //fbDAO.insert(fb);
 
         ///out.print(fbDAO.getByGameId(2));
